@@ -16,7 +16,8 @@
     	<div class="custom-block">
         
 			<div class="item-header">
-                <img class="big-photo" />
+                <div class="big-photo">
+                </div>
                 
                 <div class="item-info">
                     <p class="item-name"></p>
@@ -205,7 +206,7 @@
 	                </form>
 	            </div><!-- standard size-->
 	            
-	            <div id="custom-fit">
+	            <div id="custom-fit" style="display:none;">
 	            	<p class="description">提供你的个人量身数据,合身定制可为你制作独一无二的合身牛仔裤</p>
 	                
 	                <!-- modal view -->
@@ -216,7 +217,7 @@
 	                
 	            </div>
 	            
-	            <div id="sample-fit">
+	            <div id="sample-fit" style="display:none;">
 	            	<p class="description">你可以选择把你的裤子寄给我们,我们将根据这条裤子的尺寸制作</p>
 					<address class="description">
 	                    <strong>ID jeans, Inc.</strong><br>

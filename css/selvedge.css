@@ -5,8 +5,13 @@ ul {
 
 .thumbnails > li {
 	float: left;
-	margin-bottom: 10px;
-	margin-left: 20px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+}
+
+
+.row-fluid .thumbnails {
+ 	margin-left: 2.127659574468085%;
 }
 
 .selvedge-detail {

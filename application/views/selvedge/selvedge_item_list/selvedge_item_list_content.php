@@ -14,7 +14,7 @@
         	<img src="<?php echo base_url('images/others/selvage.png');?>" />
         </div>
         
-        <div class="shopping-list">
+        <div class="shopping-list chier row-fluid">
         	<ul class="thumbnails span2" id="oz13">
                 <!-- one row full -->
             </ul>

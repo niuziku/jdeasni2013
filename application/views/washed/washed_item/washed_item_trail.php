@@ -20,14 +20,24 @@
 					//防止不合法的item进入，影响细节选择
 					if(item.item_type != 1)
 						window.location.href = "/index.php";
-					$('.big-photo').attr('src', images_url + 'item/' + item.item_photos[0]);
+					//$('.big-photo').attr('src', images_url + 'item/' + item.item_photos[0]);
+					$(".big-photo").attr('style', 'background-image:url(' + images_url + 'item/' + item.item_photos[0] + '); background-size:cover;');
+					for(var i = 0; i < item.item_photos.length; ++i){
+						var index = i + 1;
+						$('.big-photo').append(
+							//'<li><img src="' + images_url + 'item/' + item.item_small_photos[i] + '" /></li>'
+							'<a style="z-index:' + (item.item_photos.length - i) + '" id="big_photo_zoom'+ index +'" rel="lightbox[img]" href="' + images_url + 'item/' + item.item_photos[i] + '"><button class="btn btn-mini"><i class="icon-zoom-in"></i></button></a>'
+						);	
+					}
 					$('.item-name').text(item.item_name);
 					$('.price-large span').after(item.item_price);
 					$('#price').attr('value', item.item_price);
 					$('.item-intro').text(item.item_intro);
 					for(var i = 0; i < item.item_small_photos.length; ++i){
+						var index_small = i + 1;
 						$('.small-photo-group .inline').append(
-							'<li><img src="' + images_url + 'item/' + item.item_small_photos[i] + '" /></li>'
+							//'<li><img src="' + images_url + 'item/' + item.item_small_photos[i] + '" /></li>'
+							'<li id="small_photo' + index_small + '" onClick="changePhotoAndZoom(' + index_small + ')" style="background-image:url(' + images_url + 'item/' + item.item_small_photos[i] + ');"></li>'
 						);	
 					}
 					
@@ -37,11 +47,11 @@
 					$('.item-id').attr('value', item.item_id);
 
 
-					$(".small-photo-group img").click(function(){
+					/*$(".small-photo-group img").click(function(){
 						var photo_path = $(this).attr("src");
 						photo_path = photo_path.replace('_thumb', '');
 						$(".big-photo").attr("src",photo_path);
-					});
+					});*/
 
 					get_detail();
 					

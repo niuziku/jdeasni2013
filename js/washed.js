@@ -3,6 +3,17 @@ $(document).ready(function() {
 	
 });
 
+function changePhotoAndZoom(index) {
+	var small_photo = "#small_photo" + index;
+	var zoom = "#big_photo_zoom" + index;
+	
+	var photo_path = $(small_photo).css("background-image").replace('_thumb', '');
+	$(".big-photo").css("background-image",photo_path);
+	
+	$(".big-photo a").css("z-index","0");
+	$(zoom).css("z-index","100");
+}
+
 function init() {
 	//show and hide block
 	$("#standard-size").show();

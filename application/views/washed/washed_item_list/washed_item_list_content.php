@@ -17,15 +17,15 @@
         
         <div class="shopping-list">
       	
-        	<ul class="thumbnails">
+        	<ul class="thumbnails row-fluid">
                 <!-- one row full -->
             </ul>  
             
-            <ul class="thumbnails">  
+            <ul class="thumbnails row-fluid">  
             </ul>  
             
             
-            <ul class="thumbnails">  
+            <ul class="thumbnails row-fluid">  
             </ul>
         </div>
 
