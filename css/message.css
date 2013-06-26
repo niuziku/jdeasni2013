@@ -1,0 +1,113 @@
+/* CSS for personal custom page */
+
+.form-horizontal .control-label {
+	width:60px;
+}
+
+.form-horizontal .controls {
+	margin-left:80px;
+}
+
+textarea {
+	min-height:110px;
+	max-height:110px;
+	width:560px;
+	max-width:560px;
+}
+
+#add-picture {
+	position:relative;
+	left:80px;
+	top:-10px;
+	font-size:12px;
+	color:#333;
+}
+
+.icon-picture{
+color: #aaa;
+margin-left: 0;
+font-size: 20px;
+padding-top: 5px;
+}
+
+
+#public-group {
+	margin-top:12px;
+	margin-right:6px;
+}
+
+.message-block {
+	width:66.66667%;
+	margin-top:10px;
+}
+
+#leave-message {
+	margin-top:40px;
+}
+
+#message-right {
+	position:absolute;
+	top:82px;
+	right:0;
+	font-size:16px;
+	text-align:right;
+}
+
+
+.message {
+	padding:15px 0 15px 0px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.message .time {
+	margin-left:16px;
+	font-size:12px;
+	float:right;
+	font-weight:normal;
+}
+
+.message .name {
+	font-weight:bold;
+}
+
+.message .message-img {
+	width:200px;
+	margin-bottom:10px;
+}
+
+.message p {
+	//text-indent:28px;
+}
+
+.reply {
+	margin-left:50px;
+	margin-top:5px;
+	padding:10px;
+	background-color:#EEE;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.tips {
+	position:relative;
+	top:1px; 
+	color:#B00;
+	margin-left:3px;
+}
+
+#content-tips{
+	color:#B00;
+	position:absolute;
+	top:-24px;
+	right:0;
+	display:none;
+}
+
+#content-tips2{
+	color:#B00;
+	position:absolute;
+	top:-24px;
+	right:0;
+	display:none;
+}

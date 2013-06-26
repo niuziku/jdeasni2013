@@ -1,0 +1,133 @@
+ul {
+	margin:0;
+}
+
+
+.thumbnails > li {
+	float: left;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+.selvedge-detail {
+	display:none;
+	color:#fff;
+	min-width:150px;
+	position: absolute;
+	left: -10%;
+	top: 96%;
+	z-index: 1000;
+	padding: 10px;
+	margin: 2px 0 0;
+	background:#000;
+	background:rgba(0,0,0, 0.7);
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+}
+
+
+#trouserstype-select .select-block ul .option {
+	width:162px;
+	height:240px;
+	margin-left:4px;
+	margin-right:10px;
+	margin-bottom:20px;
+}
+
+#fly-select ul .sample {
+	float:left;
+	width:332px;
+	height:120px;
+	margin-left:4px;
+}
+
+#fly-select .select-block ul .option {
+	width:332px;
+	height:120px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+
+
+
+#metal-select ul .sample {
+	float:left;
+	width:80px;
+	height:80px;
+	margin-left:4px;
+	margin-right:-6px;
+}
+
+#metal-select .select-block ul .option {
+	width:80px;
+	height:80px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+
+
+
+#metal2-select ul .sample {
+	float:left;
+	width:80px;
+	height:80px;
+	margin-left:4px;
+	margin-right:-6px;
+}
+
+#metal2-select .select-block ul .option {
+	width:80px;
+	height:80px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+
+#linecolor-select ul .sample {
+	float:left;
+	width:180px;
+	height:180px;
+	margin-left:4px;
+}
+
+#linecolor-select .select-block ul .option {
+	width:80px;
+	height:80px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+.knowledge {
+	padding-top:40px;
+	clear:both;
+}
+
+.knowledge img {
+	float:right;
+	margin-right:20px;
+	width:300px;
+}
+
+.knowledge p {
+	width:570px;
+	text-indent:28px;
+}

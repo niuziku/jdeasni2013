@@ -1,0 +1,166 @@
+
+
+
+
+
+
+/* css for account pages */
+
+#left-block {
+	margin-top:20px;
+}
+
+#right-block {
+	//background-color:#DDD;
+	margin-top:10px;
+	min-height:400px;
+}
+
+#account-list {
+	position:relative;
+	left:-24px;
+	padding:16px;
+	min-height:160px;
+	
+	/*style*/
+	background-color:#FFF;
+	display: block;
+	line-height: 20px;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+#account-list li {
+	margin-left:20px;
+	color:#0088cc;
+	line-height:24px;
+}
+
+
+/* for order*/
+.order-block {
+	margin-bottom:40px;
+	display:block;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border:1px solid #e5e5e5;
+}
+
+.order-header {
+	background:#eee;
+	clear:both;
+}
+
+.order-header h3 {
+	margin:0;
+	padding:0;
+}
+
+.alert {
+	position:relative;
+	padding:4px 14px;
+	margin:0;
+	border:0;
+	
+}
+
+.alert ul {
+	margin-bottom:0;
+}
+
+.alert h3 {
+	font-weight:100;
+}
+
+.order-option-img {
+	width:48px;
+}
+
+.price-small {
+	float:right;
+}
+
+.order-container {
+	padding:10px;
+}
+
+.order-item-detail {
+	position:relative;
+	width:480px;
+	padding:16px 0;
+	margin-left:10px;
+}
+
+.order-item-detail .item-img {
+	width:80px;
+}
+
+.order-item-detail .item-name {
+	position:absolute;
+	left:100px;
+	font-size:16px;
+	color:#333;
+}
+
+.order-item-detail .item-name:hover {
+	color: #0088cc;
+	text-decoration:none;
+}
+
+.order-item-detail .fit-type{
+	position:absolute;
+	top:50px;
+	left:100px;
+	font-weight:bold;
+}
+
+.order-item-detail .select-option {
+	position:absolute;
+	top:82px;
+	left:100px;
+	margin:0;
+	padding:0;
+}
+
+.order-container hr {
+	margin:0 210px 0 12px;
+}
+
+.order-item-detail .inline li{
+	padding-right: 2px;
+	padding-left: 2px;
+}
+
+.order-operation {
+	margin:12px;
+	width:100px;
+	float:right;
+}
+
+.order-operation ul {
+	list-style:none;
+	margin:16px 0;
+}
+
+.order-header ul .title{
+	font-size:12px;
+}
+
+.order-header .time {
+	position:absolute;
+	right:14px;
+	top:16px;
+}

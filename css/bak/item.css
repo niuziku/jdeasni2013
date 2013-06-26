@@ -1,0 +1,448 @@
+/* CSS Document */
+/* CSS for all item related pages such as item_list and item_detail */
+
+/* shopping list*/
+.shopping-list .thumbnails p {
+	margin:5px 0 0 0;
+}
+
+.shopping-list ul li {
+	position:relative;
+}
+
+.shopping-list .price {
+	position:absolute;
+	right:0;
+	bottom:0;
+	padding:5px;
+}
+
+.shopping-list .detail {
+	display:none;
+	background:#000;
+	background:rgba(0,0,0, 0.7);
+	color:#fff;
+	position:absolute;
+	margin:0;
+	bottom:5px;
+	width:219px;
+	height:30px;
+}
+
+
+.shopping-list a:hover .detail {
+	display:block;
+}
+
+.shopping-list .detail .name {
+	margin-left:4px;
+	margin-top:8px;
+}
+
+.shopping-list .detail .price-large {
+	position:absolute;
+	right:4px;;
+	bottom:2px;
+}
+
+.shopping-list .span3 img {
+	width:219px;
+	height:329px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*item detail page*/
+.item-header {
+	position:relative;
+	height:380px;
+	width:680px;
+	margin-top:10px;
+}
+
+.big-photo {
+	width:250px;
+	height:auto;
+	position:absolute;
+	left:0;
+	top:5px;
+	display:block;
+}
+
+.small-photo-group {
+	position:absolute;
+	bottom:0;
+	left:276px;
+	border-top: 1px solid #eee;
+	padding-top:10px;
+}
+
+.small-photo-group ul{
+	margin:0;
+}
+
+.small-photo-group img {
+	display:block;
+	width:50px;
+	cursor:pointer;
+}
+
+.item-intro {
+	height:130px;
+	color:#777;
+	text-indent:24px;
+}
+
+.item-info {
+	position:absolute;
+	top:5px;
+	left:276px;
+}
+
+.item-name {
+	font-size: 20px;
+}
+
+
+
+
+
+
+/* for select*/
+
+
+.item-select {
+	clear:both;
+	margin-top:34px;
+}
+
+.item-select label {
+	//position:absolute;
+}
+
+.item-select label span{
+	//position:absolute;
+}
+
+.item-select .option-list label{
+	text-align:center;
+	font-size:12px;
+}
+.item-select input[type='radio'] {
+	position:absolute;
+	left:-9990px;
+}
+
+.select-header legend span {
+	font-size:14px;
+	color:#aaa;
+	margin-left:20px;
+}
+
+.select-header legend {
+	//color:#0066cc;
+	margin-top:28px;
+}
+
+.item-select h3 {
+	margin-bottom:0;
+}
+
+
+/* custom block */
+.custom-block {
+	width:72%;
+	display:block;
+	float:left;
+}
+
+.price-large {
+	margin-top:15px;
+}
+
+.price-small {
+}
+	
+
+.option-list label {
+	margin-bottom:0;
+}
+
+.select-block ul li{
+	float:left;
+	padding-left:0;
+	padding-right:0;
+}
+
+
+
+#more-select-button {
+	margin-top:30px;
+}
+
+
+
+
+/*select intro*/
+.select-intro {
+	margin-top:50px;	
+}
+
+.metal-intro {
+	background:#DDD;
+	height:280px;
+}
+
+.leather-intro {
+	background:#BBB;
+	height:280px;
+}
+
+.detail-intro {
+	background:#AAA;
+	height:280px;
+}
+
+
+
+
+
+
+/*right part*/
+
+.add-cart {
+	margin-top:20px;
+	float:right;
+	width:220px;
+	padding: 10px;
+	
+	/*style*/
+	background-color:#FFF;
+	display: block;
+	line-height: 20px;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+#size-select button {
+	font-size:12px;
+}
+
+#standard-size .form-horizontal .control-group {
+	margin:12px 0;
+}
+
+#standard-size .form-horizontal .control-label {
+	width:auto;
+	padding-left:10px;
+}
+
+#standard-size .form-horizontal .controls {
+	margin-left:50px;
+}
+
+#standard-size .form-horizontal select {
+	width:160px;
+}
+
+.add-cart .description {
+	margin-top:6px;
+	padding:10px 10px 0 10px;
+	color:#555;
+}
+
+#buy-button {
+	width:220px;
+}
+
+#size-block {
+	//background-color:#F7F7F7;
+	display: block;
+	line-height: 20px;
+	//border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+#size-block #size-select {
+	position:relative;
+	left:-1px;
+	top:-1px;
+}
+
+#custom-fit {
+	margin-bottom:16px;
+}
+
+
+
+
+
+
+
+/* list */
+#list {
+	margin-top:6px;
+	float:right;
+	width:220px;
+	padding: 10px;
+	
+	/*style*/
+	background-color:#FFF;
+	display: block;
+	line-height: 20px;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+#list p {
+	margin-left:10px;
+	font-size:12px;
+	line-height:16px;
+}
+
+#list h5 {
+	margin-top:0;
+	clear:both;
+}
+
+#list #size-list p {
+	width:100px;
+	float:left;
+}
+
+
+
+
+
+
+
+
+/*modal for custom fit */
+.modal {
+	width:800px;
+	margin-left: -400px;
+}
+
+.modal-body .form-horizontal {
+	float:left;
+}
+
+.modal-body .form-horizontal .control-label {
+	width:50px;
+}
+
+.modal-body .form-horizontal .controls {
+	margin-left:66px;
+	width:126px;
+}
+
+.modal-body input[type='text']{
+	width:52px;
+}
+
+.controls .input-append .add-on {
+	width:20px;
+}
+
+.modal .pic {
+	float:left;
+	padding:10px;
+	width:360px;
+	display:block;
+	text-align:center;
+}
+
+
+
+
+/*select-block button style */
+.select-block label span {
+	line-height:24px;
+	display:none;
+	background:#FFF;
+	background: rgba(0, 0, 0, 0.6);
+	color:#fff;
+	text-shadow:none;
+}
+
+/*.select-block .as-pic {
+	background:#FFF;
+	background: rgba(0, 0, 0, 0.6);
+	color:#fff;
+	text-shadow:none;
+	padding:4px;
+	-webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}*/
+
+.select-block .btn {
+	padding:0;
+	border:inset 1px solid #fff;
+	//border:2px solid #ddd;
+}
+
+.select-block .btn:hover,
+.select-block .btn:focus {
+	background-position:0 0;
+	border:1px solid #0088cc;
+}
+
+.select-block .btn:hover span,
+.select-block .btn:focus span{
+	display:block;
+}
+
+.select-block .btn.active span,
+.select-block .btn:active span {
+	display:block;
+}
+
+.select-block .btn.active,
+.select-block .btn:active {
+  background-image: none;
+  outline: 0;
+  //border:1px solid #0088cc;
+  -webkit-box-shadow: inset 0 6px 16px 2px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 6px 16px 2px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 6px 16px 2px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.05);
+		  
+}

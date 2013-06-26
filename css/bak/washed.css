@@ -1,0 +1,135 @@
+/*every block size and style*/
+#banxing-select ul .sample {
+	width:180px;
+	height:260px;
+	margin-left:4px;
+}
+
+#banxing-select .select-block ul .option {
+	width:148px;
+	height:120px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+}
+
+#banxing-select .btn img {
+	
+}
+
+
+
+#color-select ul .sample {
+	float:left;
+	width:180px;
+	height:180px;
+	margin-left:4px;
+}
+
+#color-select .select-block ul .option {
+	width:80px;
+	height:80px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+#color-select .btn img {
+	width:76px;
+}
+
+
+
+#thickness-select ul .sample {
+	float:left;
+	width:216px;
+	height:120px;
+	margin-left:4px;
+	margin-right:-6px;
+}
+
+#thickness-select .select-block ul .option {
+	width:216px;
+	height:120px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+
+
+
+#fly-select ul .sample {
+	float:left;
+	width:332px;
+	height:120px;
+	margin-left:4px;
+}
+
+#fly-select .select-block ul .option {
+	width:332px;
+	height:120px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+
+
+
+#metal-select ul .sample {
+	float:left;
+	width:80px;
+	height:80px;
+	margin-left:4px;
+	margin-right:-6px;
+}
+
+#metal-select .select-block ul .option {
+	width:80px;
+	height:80px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+
+
+
+#metal2-select ul .sample {
+	float:left;
+	width:80px;
+	height:80px;
+	margin-left:4px;
+	margin-right:-6px;
+}
+
+#metal2-select .select-block ul .option {
+	width:80px;
+	height:80px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}
+
+
+#linecolor-select ul .sample {
+	float:left;
+	width:180px;
+	height:180px;
+	margin-left:4px;
+}
+
+#linecolor-select .select-block ul .option {
+	width:80px;
+	height:80px;
+	margin-bottom:20px;
+	margin-left:16px;
+	margin-right:6px;
+	float:left;
+}

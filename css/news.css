@@ -1,0 +1,79 @@
+/* CSS for news pages */
+.news-block {
+	display:block;
+	float:left;
+	margin-top:10px;
+	width:100%;
+}
+
+.one-row {
+	margin-bottom:24px;
+}
+
+.one-news {
+	width:313px;
+}
+
+.catalog {
+	width:24%;
+	display:block;
+	float:right;
+	margin-right:5px;
+}
+
+.thumbnail {
+	height:420px;
+	overflow:hidden;
+}
+
+a:hover {
+	text-decoration:none;
+}
+
+.thumbnail p,
+.thumbnail h4 {
+	color:#333333;
+	padding:0 10px 0 10px;
+}
+
+.category,
+.time {
+	color:#bbb;
+	font-size:12px;
+}
+
+.time {
+	margin-left:10px;
+}
+
+.one-news .new-pic {
+	width:303px;
+	height:201px;
+	overflow:hidden;
+}
+
+
+
+/* news detail */
+.news-detail {
+	margin-top:20px;
+}
+
+.news-detail img {
+	margin:14px;
+}
+
+.news-detail .content {
+	text-indent:28px;
+	margin:14px;
+}
+
+.return {
+	margin-top:30px;
+	float:right;
+}
+
+.content {
+	max-height:120px;
+	overflow:hidden;
+}

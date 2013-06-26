@@ -1,0 +1,11 @@
+/* CSS for personal custom page */
+
+.form-horizontal .control-label {
+	text-align:left;
+	margin-left:20px;
+}
+
+.form-horizontal .controls {
+	margin-left:0;
+	float:left;
+}

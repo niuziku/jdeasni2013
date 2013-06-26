@@ -1,0 +1,31 @@
+/*about page*/
+
+.about {
+	position:relative;
+	margin-top:10px;
+}
+
+.about img {
+	border-radius:8px;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	margin-bottom:20px;
+}
+
+.about #about1 {
+	width:600px;
+	color:#fff;
+	position:absolute;
+	top:250px;
+	left:30px;
+	text-indent:28px;
+}
+
+.about #about2 {
+	width:600px;
+	color:#fff;
+	position:absolute;
+	top:550px;
+	left:30px;
+	text-indent:28px;
+}
