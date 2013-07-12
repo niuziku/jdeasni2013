@@ -101,18 +101,25 @@
         <div class="flexslider">
           <ul class="slides">
             <li>
-              <img src="<?php echo base_url('images/slider/01.jpg');?>" />
+                <a href="<?php echo site_url('item/washed_item_list');?>">
+                <img src="<?php echo base_url('images/slider/01.jpg');?>" />
+                </a>
             </li>
             <li>
-              <img src="<?php echo base_url('images/slider/02.jpg');?>" />
+            	<a href="<?php echo site_url('item/selvedge_item_list');?>">
+                <img src="<?php echo base_url('images/slider/02.jpg');?>" />
+                </a>
             </li>
             <li>
-              <img src="<?php echo base_url('images/slider/03.jpg');?>" />
+            	<img src="<?php echo base_url('images/slider/03.jpg');?>" />
             </li>
             <li>
-              <img src="<?php echo base_url('images/slider/04.jpg');?>" />
+            	<a href="<?php echo site_url('item/washed_item_list');?>">
+                <img src="<?php echo base_url('images/slider/04.jpg');?>" />
+                </a>
             </li>
-          </ul>
+            <li>
+                <img src="<?php echo base_url('images/slider/05.jpg');?>" />
         </div>
         
         <div class="shopping-item">
@@ -130,18 +137,21 @@
             	<h2>联系我们</h2>
                 <p style="color:#888;">工作时间：周一至周五 9:00-18:00</p>
             	<ul>
-                	<li><i class="icon-bell"></i>电话: 159-3254-0000</li>
-                    <li><i class="icon-envelope"></i>邮箱: contact@idjeans.cn</li>
+                	<li><i class="icon-bell"></i>电话: 159-2016-7521</li>
+                    <li><i class="icon-envelope"></i>邮箱: hello@idjeans.cn</li>
                 </ul>
             </div>
             
             <div id="taobao" class="span4">
-            	<img src="<?php echo base_url('images/others/taobao_logo.png');?>" alt="淘宝店" />
+            	<a href="http://idjeans.taobao.com" target="_blank">
+                    <img src="<?php echo base_url('images/others/taobao_logo.png');?>" alt="淘宝店" />
+                </a>
             </div>
             
             <div id="follow" class="span4">
             	<img src="<?php echo base_url('images/others/wechat_code.jpg');?>" alt="微信二维码"/>
             	<img id="wechat_logo" src="<?php echo base_url('images/others/wechat.png')?>" alt="微信"/>
+                <p>关注微信公众平台，获取更多定制资讯</p>
             </div>
       </div>
         

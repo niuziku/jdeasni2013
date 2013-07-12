@@ -21,7 +21,7 @@
 					if(item.item_type != 1)
 						window.location.href = "/index.php";
 					//$('.big-photo').attr('src', images_url + 'item/' + item.item_photos[0]);
-					$(".big-photo").attr('style', 'background-image:url(' + images_url + 'item/' + item.item_photos[0] + '); background-size:cover;');
+					$(".big-photo").attr('style', 'background-image:url(' + images_url + 'item/' + item.item_photos[0] + '); ');
 					for(var i = 0; i < item.item_photos.length; ++i){
 						var index = i + 1;
 						$('.big-photo').append(
@@ -41,7 +41,7 @@
 						);	
 					}
 					
-					$('.default').attr('style', 'background-image:url(' + images_url + 'item/' + item.item_photos[0] + '); background-size:cover;');
+					$('.default').attr('style', 'background-image:url(' + (images_url + 'item/' + item.item_photos[0] )+ '); background-size:cover;');
 					//$('.add-cart-header .price-small').append('<span>小计：RMB</span><p>'+item.item_price+'</p>');
 					$('.price-label').text(item.item_price);
 					$('.item-id').attr('value', item.item_id);

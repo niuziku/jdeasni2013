@@ -48,6 +48,11 @@
 	float:right;
 }
 
+#follow p {
+	margin-top:10px;
+	float:right;
+}
+
 #follow #wechat_logo {
 	padding:16px;
 }

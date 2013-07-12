@@ -22,7 +22,7 @@
                     <p class="item-name"></p>
                     <p class="price-large"><span>RMB </span></p>
                     <input type="hidden" id="price" value="0"/>
-                    <p>预计制作时间:7~14天&nbsp;&nbsp;</p>
+                    <p>预计制作时间:12~20天&nbsp;&nbsp;</p>
                     <span class="label">更多定制细节在下面</span>
                     <hr/>
                     <p class="item-intro">

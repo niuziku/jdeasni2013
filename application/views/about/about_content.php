@@ -2,7 +2,7 @@
     
     	<div id="website-nav">
         	<ul class="inline">
-               <li><a href="../index.php"><i class="icon-home"></i></a></li>
+               <li><a href="<?php echo base_url('index.php');?>"><i class="icon-home"></i></a></li>
                <li>&gt;</li>
                <li><p class="text">关于我们</p></li>
             </ul>
