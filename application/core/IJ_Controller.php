@@ -59,7 +59,7 @@ abstract class IJ_Controller extends CI_Controller{
  */
 abstract class Front_Controller extends IJ_Controller{
 	
-	var $monetary_exchange_rate = 1;
+	var $monetary_exchange_rate = 0.1629;
 	var $language = 'CN';
 	
 	public function __construct(){
@@ -86,6 +86,12 @@ abstract class Front_Controller extends IJ_Controller{
 		foreach ($items as $item)
 			foreach ($names as $name)
 				$item->$name *= $this->monetary_exchange_rate;
+	}
+	
+	protected function monetary_exchange_for_single($item)
+	{
+		$item *= $this->monetary_exchange_rate;
+		return $item;
 	}
 	
 	protected function need_rate_exchange()

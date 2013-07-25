@@ -6,6 +6,15 @@ class Discount_model extends CI_Model
 		parent::__construct();
 	}
 	
+	public function get_discount($discount_code)
+	{
+		$sql = 'SELECT * FROM `discount` WHERE `discount_code` = ? AND `valid` = 1';
+		$query = $this->db->query($sql, array($discount_code));
+		if($query->num_rows() != 1)
+			return null;
+		return $query->row();
+	}
+	
 	public function get_global_by_code($discount_code)
 	{
 		$sql = 'SELECT * FROM `discount` WHERE `discount_code` = ? AND `valid` = 1 AND `discount_type` = 2';
@@ -15,7 +24,7 @@ class Discount_model extends CI_Model
 		return $query->row();		
 	}
 	
-	public function get_personal_by_customer_id($customer_id)
+	/* public function get_personal_by_customer_id($customer_id)
 	{
 		$sql = 'SELECT 
 					*
@@ -29,6 +38,20 @@ class Discount_model extends CI_Model
 		if($query->num_rows() == 0)
 			return null;
 		return $query->result();
+	} */
+	
+	public function get_personal($discount_code)
+	{
+		$sql = 'SELECT
+					*
+				FROM
+					`discount`
+				WHERE
+					`discount`.`discount_code` = ? AND `discount`.`valid` = 1 AND `discount`.`discount_type` = 1';
+		$query = $this->db->query($sql, array($discount_code));
+		if($query->num_rows() != 1)
+			return null;
+		return $query->row();
 	}
 	
 	public function to_invalid($discount_id)

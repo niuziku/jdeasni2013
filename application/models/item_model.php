@@ -1,9 +1,12 @@
 <?php
 class Item_model extends CI_Model
 {
+	var $max_display;
+	
 	public function __construct()
 	{
 		parent::__construct();
+		$this->max_display = 10;
 	}
 	
 	/**
@@ -135,16 +138,41 @@ class Item_model extends CI_Model
 	}
 	
 	//Modify by Jun
-	public function search_item($item_type) {
-		$sql = 'SELECT * FROM `item` WHERE `item_type` = ? AND `item_on_sale` = 1 ORDER BY `item_id` DESC';
-		$query = $this->db->query($sql, $item_type);
+	public function search_item($item_type, $page_num) {
+		$result_offset = ( $page_num - 1 ) * $this->max_display;
+		$sql = 'SELECT * FROM `item` WHERE `item_type` = ? AND `item_on_sale` = 1 ORDER BY `item_id` DESC LIMIT ?, ?';
+		$query = $this->db->query($sql, array($item_type, $result_offset, $this->max_display));
 		return $query->result();
 	}
 	
 	//Modify by Jun
-	public function search_offsale_item($item_type) {
-		$sql = 'SELECT * FROM `item` WHERE `item_type` = ? AND `item_on_sale` = 0 ORDER BY `item_id` DESC';
-		$query = $this->db->query($sql, $item_type);
+	public function search_offsale_item($item_type, $page_num) {
+		$result_offset = ( $page_num - 1 ) * $this->max_display;
+		$sql = 'SELECT * FROM `item` WHERE `item_type` = ? AND `item_on_sale` = 0 ORDER BY `item_id` DESC LIMIT ?, ?';
+		$query = $this->db->query($sql,  array($item_type, $result_offset, $this->max_display));
 		return $query->result();
+	}
+	
+	//Modify by Jun
+	public function modify_price($item_id, $item_price) {
+		$sql = 'UPDATE `item` SET `item_price` = ? WHERE `item_id` = ?';
+		$query = $this->db->query($sql,array($item_price, $item_id));
+		return $this->db->affected_rows() == 1;
+	}
+	
+	// Modify by Jun
+	public function item_amount($item_type = 1) {
+		$sql = 'SELECT count(*) AS `item_amount` FROM `item` where `item_type` = ? and `item_on_sale` = 1 ORDER BY `item_id`';
+		$qurey = $this->db->query($sql, $item_type);
+	
+		return $qurey->row();
+	}
+	
+	// Modify by Jun
+	public function item_offsale_amount($item_type = 1) {
+		$sql = 'SELECT count(*) AS `item_amount` FROM `item` where `item_type` = ? and `item_on_sale` = 0 ORDER BY `item_id`';
+		$qurey = $this->db->query($sql, $item_type);
+	
+		return $qurey->row();
 	}
 }

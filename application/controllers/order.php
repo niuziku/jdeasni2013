@@ -1,3 +1,4 @@
+
 <?php
 class Order extends Front_Controller
 {
@@ -314,23 +315,13 @@ class Order extends Front_Controller
 			else 
 			{
 				//是否个人优惠劵
-				$discounts = $this->discount_model->get_personal_by_customer_id($customer_id);
-				if($discounts == null)
+				$discount = $this->discount_model->get_personal($discount_code);
+				if($discount == null)
 					return $this->_json_response(array(), '777', 'discount NOT EXIST');
-				$exist = FALSE;
-				foreach ($discounts as $discount)
-				{
-					if ($discount->discount_code == $discount_code)
-					{
-						$total_price -= $discount->minus_price;
-						$this->discount->to_invalid($discount->discount_id);
-						$discount_id = $discount->discount_id;
-						$exist = TRUE;
-						break;
-					}
-				}
-				if ($exist == FALSE)
-					return $this->_json_response(array(), '777', 'discount NOT EXIST');
+				
+				$total_price -= $discount->minus_price;
+				$this->discount_model->to_invalid($discount->discount_id);
+				$discount_id = $discount->discount_id;
 			}
 		}
 		
@@ -357,7 +348,7 @@ class Order extends Front_Controller
 		}
 		else{
 			//paypal
-			$html_text = $this->paypal();
+			$html_text = $this->paypal($order_id, $receiver_name, $receiver_area, $address, $phone, $total_price, $create_user);
 		}
 		
 		if ($html_text == '')
@@ -395,7 +386,7 @@ class Order extends Front_Controller
 		}
 		else{
 			//paypal
-			$html_text = $this->paypal();
+			$html_text = $this->paypal($order_id, $receiver->receiver_name, $receiver->receiver_area, $receiver->receiver_address, $receiver->receiver_phone, $order->order_sum, 0);
 		}
 		
 		if ($html_text == '')
@@ -516,9 +507,357 @@ class Order extends Front_Controller
 		return $html_text;
 	}
 	
-	public function paypal()
+	public function paypal($order_id, $rec_name, $receiver_area, $address, $phone, $total_price, $create_user)
 	{
-		return TRUE;
+		
+		require APPPATH.'third_party/paypal/CallerService.php';
+		session_start();
+		$this->load->helper('url');
+		
+		
+		//*************************************
+		if(! isset($_REQUEST['token'])) {
+		
+			/* The servername and serverport tells PayPal where the buyer
+			 should be directed back to after authorizing payment.
+			In this case, its the local webserver that is running this script
+			Using the servername and serverport, the return URL is the first
+			portion of the URL that buyers will return to after authorizing payment
+			*/
+			$serverName = $_SERVER['SERVER_NAME'];
+			$serverPort = $_SERVER['SERVER_PORT'];
+			$url=dirname('http://'.$serverName.':'.$serverPort.$_SERVER['REQUEST_URI']);
+		
+		
+			$currencyCodeType='USD';
+			$paymentType='Sale';
+			
+			$personName        = $rec_name;
+			$SHIPTOSTREET      = $address;
+			$SHIPTOCITY        = $receiver_area;
+			$SHIPTOSTATE	   = $receiver_area;
+			$SHIPTOCOUNTRYCODE = $receiver_area;
+			$SHIPTOZIP         = '';
+			$L_NAME0           = '个性定制牛仔裤';
+			$L_AMT0            = $total_price;
+			$L_QTY0            = 1;
+			
+			
+			/* Construct the parameter string that describes the PayPal payment
+			 the varialbes were set in the web form, and the resulting string
+			is stored in $nvpstr
+			*/
+			//$itemamt = 0.00;
+			//$itemamt = $L_QTY0*$L_AMT0;
+			//$amt = 5.00+2.00+1.00+$itemamt;
+			//$amt = $itemamt;
+			//$maxamt= $amt+25.00;
+			$amt = $L_AMT0*$L_QTY0;
+			$nvpstr="";
+		
+			
+			$amt = ceil($this->monetary_exchange_for_single($amt));
+			
+			/* The returnURL is the location where buyers return when a
+			 payment has been succesfully authorized.
+			The cancelURL is the location buyers are sent to when they hit the
+			cancel button during authorization of payment during the PayPal flow
+			*/
+			$create_user = ($create_user == TRUE ? 1 : 0);
+			$returnURL =urlencode($url.'/reviewOrderForPaypal?currencyCodeType='.$currencyCodeType.'&newuser='.$create_user.'&paymentType='.$paymentType."&paymentAmount=".$amt);
+			$cancelURL =urlencode(site_url('order') );
+		
+			
+			
+			/*
+			 * Setting up the Shipping address details
+			*/
+			/* $shiptoAddress = "&SHIPTONAME=$personName
+				&SHIPTOSTREET=$SHIPTOSTREET
+				&SHIPTOCITY=$SHIPTOCITY
+				&SHIPTOSTATE=$SHIPTOSTATE
+				&SHIPTOCOUNTRYCODE=$SHIPTOCOUNTRYCODE
+				&SHIPTOZIP=$SHIPTOZIP";
+			 
+			$nvpstr="&ADDRESSOVERRIDE=1.
+				$shiptoAddress.
+				&L_NAME0=".$L_NAME0.
+				"&L_AMT0=".$L_AMT0.
+				"&L_QTY0=".$L_QTY0.
+				"&MAXAMT=".(string)$maxamt.
+				"&AMT=".(string)$amt.
+				"&ITEMAMT=".(string)$itemamt.
+				"&CALLBACKTIMEOUT=4".
+				"&L_SHIPPINGOPTIONAMOUNT1=8.00".
+				"&L_SHIPPINGOPTIONlABEL1=UPS Next Day Air".
+				"&L_SHIPPINGOPTIONNAME1=UPS Air".
+				"&L_SHIPPINGOPTIONISDEFAULT1=true".
+				"&L_SHIPPINGOPTIONAMOUNT0=3.00".
+				"&L_SHIPPINGOPTIONLABEL0=UPS Ground 7 Days".
+				"&L_SHIPPINGOPTIONNAME0=Ground".
+				"&L_SHIPPINGOPTIONISDEFAULT0=false".
+				"&INSURANCEAMT=1.00".
+				"&INSURANCEOPTIONOFFERED=true".
+				"&CALLBACK=https://www.ppcallback.com/callback.pl".
+				"&SHIPPINGAMT=8.00".
+				"&SHIPDISCAMT=-3.00".
+				"&TAXAMT=2.00".
+				"&L_NUMBER0=1000".
+				"&L_DESC0=Size: 8.8-oz".
+				"&L_NUMBER1=10001".
+				"&L_DESC1=Size: Two 24-piece boxes".
+				"&L_ITEMWEIGHTVALUE1=0.5".
+				"&L_ITEMWEIGHTUNIT1=lbs".
+				"&ReturnUrl=".$returnURL.
+				"&CANCELURL=".$cancelURL.
+				"&CURRENCYCODE=".$currencyCodeType.
+				"&PAYMENTACTION=".$paymentType;  */
+			$nvpstr = "&AMT=".$amt."&"."&ReturnUrl=".$returnURL."&CANCELURL=".$cancelURL."&INVNUM=".$order_id."&NOSHIPPING=1";
+			
+			/* $nvpstr = "&PAYMENTREQUEST_0_AMT=$total_price&REQCONFIRMSHIPPING=1&NOSHIPPING=0&PAYMENTREQUEST_0_SHIPTONAME=$rec_name
+			&PAYMENTREQUEST_0_SHIPTOSTREET=$address&PAYMENTREQUEST_0_SHIPTOCITY=$receiver_area&PAYMENTREQUEST_0_SHIPTOSTATE=$receiver_area
+			&PAYMENTREQUEST_0_SHIPTOZIP=123123&PAYMENTREQUEST_0_SHIPTOPHONENUM=$phone&PAYMENTREQUEST_0_ITEMAMT=$total_price
+			&PAYMENTREQUEST_0_INVNUM=$order_id&PAYMENTREQUEST_0_NOTIFYURL=www.a.com"; */
+			
+			//$nvpstr = $nvpHeader.$nvpstr;
+			 
+			/* Make the call to PayPal to set the Express Checkout token
+			 If the API call succeded, then redirect the buyer to PayPal
+			to begin to authorize payment.  If an error occured, show the
+			resulting errors
+			*/
+			$resArray=hash_call("SetExpressCheckout",$nvpstr);
+			$_SESSION['reshash']=$resArray;
+		
+			$ack = strtoupper($resArray["ACK"]);
+			if($ack=="SUCCESS"){
+				// Redirect to paypal.com here
+				$token = urldecode($resArray["TOKEN"]);
+				$payPalURL = PAYPAL_URL.$token;
+				$sHtml = "<form name='paypalSubmit' action='".$payPalURL."' method='post'></form>";
+				$sHtml = $sHtml."<script>document.forms['paypalSubmit'].submit();</script>";
+				return $sHtml;
+			
+			} else  {
+				echo "APIERROR";
+			}
+			
+		}
+		//********************************************************
+		/* 
+		$paypal->add_field( 'PAYMENTREQUEST_0_AMT', $total_price);
+		$paypal->add_field( 'REQCONFIRMSHIPPING', 1);
+		$paypal->add_field( 'NOSHIPPING', 0);
+		$paypal->add_field( 'PAYMENTREQUEST_0_SHIPTONAME', $rec_name);
+		$paypal->add_field( 'PAYMENTREQUEST_0_SHIPTOSTREET', $address);
+		$paypal->add_field( 'PAYMENTREQUEST_0_SHIPTOCITY', $receiver_area);
+		$paypal->add_field( 'PAYMENTREQUEST_0_SHIPTOSTATE', $receiver_area);
+		$paypal->add_field( 'PAYMENTREQUEST_0_SHIPTOZIP', '');
+		$paypal->add_field( 'PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE', '');
+		$paypal->add_field( 'PAYMENTREQUEST_0_SHIPTOPHONENUM', $phone);
+		$paypal->add_field( 'PAYMENTREQUEST_0_ITEMAMT', $total_price);
+		//$paypal->add_field( 'PAYMENTREQUEST_0_SHIPPINGAMT', 0);
+		//$paypal->add_field( 'PAYMENTREQUEST_0_INSURANCEAMT', 0);
+		$paypal->add_field( 'PAYMENTREQUEST_0_INVNUM', $order_id);
+		$paypal->add_field( 'PAYMENTREQUEST_0_NOTIFYURL', ''); */
+		
+	}
+	
+	public function nodify_for_paypal()
+	{
+		require APPPATH.'third_party/alipay/alipay_notify.class.php';
+		logResult('4');
+		
+		//从 PayPal 出读取 POST 信息同时添加变量„cmd‟
+		$req = 'cmd=_notify-validate';
+		foreach ($_POST as $key => $value) {
+			$value = urlencode(stripslashes($value));
+			$req .= "&$key=$value";
+		}
+		//建议在此将接受到的信息记录到日志文件中以确认是否收到 IPN 信息
+		//将信息 POST 回给 PayPal 进行验证
+		$header .= "POST /cgi-bin/webscr HTTP/1.1\r\n";
+		$header .= "Content-Type:application/x-www-form-urlencoded\r\n";
+		$header .= "Content-Length:" . strlen($req) ."\r\n\r\n";
+		//在 Sandbox 情况下，设置：
+		$fp = fsockopen('www.sandbox.paypal.com',80,$errno,$errstr,30);
+		//$fp = fsockopen ('www.paypal.com', 80, $errno, $errstr, 30);
+		//将 POST 变量记录在本地变量中
+		//该付款明细所有变量可参考：
+		//https://www.paypal.com/IntegrationCenter/ic_ipn-pdt-variable-reference.html
+		$item_name = $_POST['item_name'];
+		$item_number = $_POST['item_number'];
+		$payment_status = $_POST['payment_status'];
+		$payment_amount = $_POST['mc_gross'];
+		$payment_currency = $_POST['mc_currency'];
+		$txn_id = $_POST['txn_id'];
+		$receiver_email = $_POST['receiver_email'];
+		$payer_email = $_POST['payer_email'];
+		//…
+		//判断回复 POST 是否创建成功
+		if (!$fp) {
+			//HTTP 错误
+		}else {
+			//将回复 POST 信息写入 SOCKET 端口
+			fputs ($fp, $header .$req);
+			//开始接受 PayPal 对回复 POST 信息的认证信息
+			while (!feof($fp)) {
+				$res = fgets ($fp, 1024);
+				//已经通过认证
+				if (strcmp ($res, "VERIFIED") == 0) {
+					//检查付款状态
+					//检查 txn_id 是否已经处理过
+					//检查 receiver_email 是否是您的 PayPal 账户中的 EMAIL 地址
+					//检查付款金额和货币单位是否正确
+					//处理这次付款，包括写数据库
+				}else if (strcmp ($res, "INVALID") == 0) {
+					//未通过认证，有可能是编码错误或非法的 POST 信息
+				}
+			}
+			fclose ($fp);
+		}
+	}
+	
+	public function reviewOrderForPaypal()
+	{
+		require APPPATH.'third_party/paypal/CallerService.php';
+		session_start();
+		$this->load->helper('url');
+		
+		$token =urlencode( $_REQUEST['token']);
+		
+		/* Build a second API request to PayPal, using the token as the
+		 ID to get the details on the payment authorization
+		*/
+		$nvpstr="&TOKEN=".$token;
+		
+		/* Make the API call and store the results in an array.  If the
+		 call was a success, show the authorization details, and provide
+		an action to complete the payment.  If failed, show the error
+		*/
+		$resArray=hash_call("GetExpressCheckoutDetails",$nvpstr);
+		$_SESSION['reshash']=$resArray;
+		$ack = strtoupper($resArray["ACK"]);
+		
+		if($ack == 'SUCCESS' || $ack == 'SUCCESSWITHWARNING'){
+		
+			//将getExpressCheckoutDetail表单的内容发到DoExpress然后调用它的函数
+			
+			$_SESSION['token']=$_REQUEST['token'];
+			$_SESSION['payer_id'] = $_REQUEST['PayerID'];
+			
+			$_SESSION['paymentAmount']=$_REQUEST['paymentAmount'];
+			$_SESSION['currCodeType']=$_REQUEST['currencyCodeType'];
+			$_SESSION['paymentType']=$_REQUEST['paymentType'];
+			
+			$resArray=$_SESSION['reshash'];
+			$_SESSION['TotalAmount']= $resArray['AMT'] + $resArray['SHIPDISCAMT'];
+			
+			
+			ini_set('session.bug_compat_42',0);
+			ini_set('session.bug_compat_warn',0);
+			
+			/* Gather the information to make the final call to
+			 finalize the PayPal payment.  The variable nvpstr
+			holds the name value pairs
+			*/
+			$token =urlencode( $_SESSION['token']);
+			$paymentAmount =urlencode ($_SESSION['TotalAmount']);
+			$paymentType = urlencode($_SESSION['paymentType']);
+			$currCodeType = urlencode($_SESSION['currCodeType']);
+			$payerID = urlencode($_SESSION['payer_id']);
+			$serverName = urlencode($_SERVER['SERVER_NAME']);
+			
+			$nvpstr='&TOKEN='.$token.'&PAYERID='.$payerID.'&PAYMENTACTION='.$paymentType.'&AMT='.$paymentAmount.'&CURRENCYCODE='.$currCodeType.'&IPADDRESS='.$serverName ;
+			
+			
+			
+			/* Make the call to PayPal to finalize payment
+			 If an error occured, show the resulting errors
+			*/
+			$resArray=hash_call("DoExpressCheckoutPayment",$nvpstr);
+			
+			/* Display the API response back to the browser.
+			 If the response from PayPal was a success, display the response parameters'
+			If the response was an error, display the errors received using APIError.php.
+			*/
+			$ack = strtoupper($resArray["ACK"]);
+			
+			
+			if($ack != 'SUCCESS' && $ack != 'SUCCESSWITHWARNING'){
+				$_SESSION['reshash']=$resArray;
+				$location = "APIError.php";
+				header("Location: $location");
+			}
+			else{
+				if ($_REQUEST['newuser'] == 1)
+				{
+					//logResult("new cus");
+					$email = $this->session->userdata('customer_name');
+					$this->load->view('cart/pay_create_acount/pay_create_acount_head');
+					$this->load->view('header');
+					$this->load->view('cart/pay_create_acount/pay_create_acount_content', array('email'=>$email));
+					$this->load->view('footer');
+					$this->load->view('cart/pay_create_acount/pay_create_acount_trail');
+				}
+				else
+				{
+					//logResult("old cus");
+					$this->load->view('cart/pay_have_account/pay_have_account_head');
+					$this->load->view('header');
+					$this->load->view('cart/pay_have_account/pay_have_account_content');
+					$this->load->view('footer');
+					$this->load->view('cart/pay_have_account/pay_have_account_trail');
+				}
+			}
+		} else  {
+			//Redirecting to APIError.php to display errors.
+			$location = "APIError.php";
+			header("Location: $location");
+		}
+	}
+	
+	public function APIError(){
+		
+		/*************************************************
+		 APIError.php
+		
+		Displays error parameters.
+		
+		Called by DoDirectPaymentReceipt.php, TransactionDetails.php,
+		GetExpressCheckoutDetails.php and DoExpressCheckoutPayment.php.
+		
+		*************************************************/
+		
+		session_start();
+		$resArray=$_SESSION['reshash'];
+	
+		
+		
+		
+		  //it will print if any URL errors 
+			if(isset($_SESSION['curl_error_no'])) { 
+					$errorCode= $_SESSION['curl_error_no'] ;
+					$errorMessage=$_SESSION['curl_error_msg'] ;	
+					session_unset();	
+		
+		
+		   
+		
+				echo "Error Number";
+				echo $errorCode;
+			
+				echo "Error Message:";
+				echo $errorMessage;
+			}
+			 else {
+		
+		
+		    
+		    require 'ShowAllResponse.php';
+			 }
+		
+				
 	}
 	
 	public function do_return($is_new_customer)

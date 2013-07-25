@@ -14,6 +14,8 @@ $(document).ready(function(){
 	$('.btn-success').click(function(){
 		pay();
 	})
+
+	changePayTool();
 });
 
 
@@ -34,6 +36,23 @@ function get_receivers(){
                 		'</label>';
 					$('.select-address #add_new_address').before(html);
 				} 
+
+
+				var receiver = $('.select-address').find('input:radio[name="address_select"]:checked').next().text(	); 
+				if(receiver != null || receiver != ''){
+					receiver = receiver.split('|');
+					receiver_name = $.trim(receiver[1]).substring(4);
+					phone = $.trim(receiver[2]).substring(5);
+					province = receiver[0].split(',')[0];
+					city = receiver[0].split(',')[1];
+					address = receiver[0].split(',')[2];
+
+					$('#province').text(province);
+					$('#city').text(city);
+					$('#address').text(address);
+					$('#phone').text(phone);
+					$('#name').text(receiver_name);
+				}
 
 				changeReceiverMsg();
 			}
@@ -62,6 +81,13 @@ function changeReceiverMsg(){
 		$('#address').text(address);
 		$('#phone').text(phone);
 		$('#name').text(receiver_name);
+	});
+}
+
+function changePayTool(){
+	$('input[name="payment"]').change(function(){
+		var payment = $('input:radio[name="payment"]:checked').next().attr('src');
+		$('#pay-method').attr('src', payment);
 	});
 }
 

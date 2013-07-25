@@ -15,7 +15,6 @@
             	<li><a href="<?php echo site_url('admin/order');?>">订单</a></li>
                 <li><a href="<?php echo site_url('admin/item');?>">商品</a></li>
                 <li><a href="<?php echo site_url('admin/item_detail');?>">商品细节</a></li>
-                <li><a href="<?php echo site_url('admin/customer');?>">用户</a></li>
                 <li><a href="<?php echo site_url('admin/news');?>">资讯</a></li>
                 <li><a href="<?php echo site_url('admin/comment');?>">评论</a></li>
                 <li><a href="<?php echo site_url('admin/discount');?>">优惠券</a></li>

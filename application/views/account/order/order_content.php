@@ -16,7 +16,7 @@
             	<ul id="account-list">
                 	<h4>我的账户</h4>
                 	<li><a href="#">订单</a></li>
-                    <li><a href="password.php">修改密码</a></li>
+                    <li><a href="<?php echo site_url('customer/password');?>">修改密码</a></li>
                     <li><a href="#">尺码库</a></li>
                     <li><a href="#">地址库</a></li>
                 </ul>

@@ -28,10 +28,19 @@ input, select, textarea {
 	color:#4F4F4F;
 	font-family:'微软雅黑';
 	border:#CFCFCF 1px solid;
+	padding:0 3px;
 }
 
 textarea {
 	border:#CFCFCF 1px solid;
+}
+
+.change_button {
+	background-color:#4876FF;
+	color:#FFFFFF;
+	border:#436EEE 1px solid;
+	border-radius:3px;
+	cursor:pointer;
 }
 
 
@@ -398,10 +407,6 @@ form .submit_button {
 	width:40px;
 	height:23px;
 	margin-left:15px;
-	background-color:#4876FF;
-	color:#FFFFFF;
-	border:#436EEE 1px solid;
-	border-radius:3px;
 	cursor:pointer;
 }
 
@@ -625,6 +630,10 @@ form .submit_button {
 	margin-right:30px;
 }
 
+#item_type_select {
+	padding:0;
+}
+
 #type_select button {
 	cursor:pointer;
 	width:50px;
@@ -663,6 +672,26 @@ form .submit_button {
 #item_list .item_info span {
 	display:block;
 	margin:3px 0;
+}
+
+#item_list .item_info .item_price input {
+	width:50px;
+	height:auto;
+}
+
+#item_list .item_info .item_price a {
+	margin-left:10px;
+}
+
+#item_list .item_info .item_price a.cancle_link {
+	color:#EE3B3B;
+}
+
+
+
+#item_list .item_info span a {
+	margin-left:15px;
+	padding:2px 5px;
 }
 
 #item_list li .item_info .material img {

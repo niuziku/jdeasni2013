@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/idjeans/';
+var base_url = 'http://localhost/jdeasni2013/';
 //var base_url = 'http://www.idjeans.cn/';
 var site_url = base_url + 'index.php/';
 var images_url = base_url + 'images/';

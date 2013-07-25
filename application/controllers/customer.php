@@ -34,6 +34,19 @@ class Customer extends Front_Controller
 		
 	}
 	
+	public function password()
+	{
+		$this->load->helper('url');
+		if ($this->is_login())
+		{
+			$this->load->view('account/password/password_head.php');
+			$this->load->view('header');
+			$this->load->view('account/password/password_content.php');
+			$this->load->view('footer');
+			$this->load->view('account/password/password_trail.php');
+		}
+	}
+	
 	public function change_password()
 	{
 		$customer_id = $this->session->userdata('customer_id');

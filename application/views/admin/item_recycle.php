@@ -6,7 +6,7 @@
         <div id="content">
         	<div id="type_select">
             	<span>商品类型：
-                	<select name="item_type">
+                	<select name="item_type" id="item_type_select">
                     	<option value="1" selected="selected">洗水牛仔</option>
                         <option value="2">赤耳单宁</option>
                         <option value="3">休闲裤</option>
@@ -19,17 +19,40 @@
     </div>
     
     <script type="text/javascript">
-		var item_last_index = null;
+		var MAX_DISPLAY = 10;
+		
+		var page_num = 1;
+		var page_amount = 1;
+		var type_num = 1;
 		
 		$(document).ready(function() {
-            searchType();
+            init();
         });
 		
-		function searchType() {
-			var item_index = document.getElementsByName("item_type").item(0).options.selectedIndex;
-			
-			item_last_index = item_index + 1;
+		function init() {
+			var url = location.search;
+			var type_mark = url.lastIndexOf('type=');
+			var page_mark = url.lastIndexOf('page_num=');
+
+			if(type_mark > 0) {
+				type_num = parseInt(url.substr(type_mark + 5, page_mark - 2));
+				page_num = parseInt(url.substr(page_mark + 9, url.length - 1));
+				
+			}
+			else {
+				type_num = 1;
+				page_num = 1;
+			}
+			$("#item_type_select").val(type_num);
 			searchOperation();
+		}
+		
+		function searchType() {
+			var item_index = $("#item_type_select").val();
+			
+			type_num = item_index;
+			page_num = 1;
+			location.href = admin_url + "item/recycle?type=" + type_num + "&page_num=" + page_num;
 		}
 		
 		function searchOperation() {
@@ -43,10 +66,11 @@
 			var images_folder = $('#images_folder').text() + '/';
 			
 			$.ajax({
-				url:admin_url + "item/search_offsale_item",
-				data:{item_type:item_last_index},
+				url:admin_url + "item/search_offsale_item/" + type_num + "/" + page_num,
+				data:{},
 				type:"post",
 				dataType:"json",
+				complete: get_page_amount,
 				success: function(data, status) {
 					if(data.code == 0) {
 						var data_length = data.data.length;
@@ -119,6 +143,7 @@
 					success:function(data) {
 						if(data.code == 0) {
 							$("#item_list").remove();
+							$("#page").remove();
 							searchOperation();
 						}
 						else {
@@ -144,6 +169,7 @@
 					success:function(data) {
 						if(data.code == 0) {
 							$("#item_list").remove();
+							$("#page").remove();
 							searchOperation();
 						}
 						else {
@@ -156,6 +182,94 @@
 			}
 			else {
 				return false;
+			}
+		}
+		
+		
+		function get_page_amount() {
+			$.ajax({
+				url: admin_url + "item/item_offsale_amount/" + type_num,
+				data: {},
+				type: "post",
+				dataType: "json",
+				complete:setPageNav,
+				success: function(data, textStatus) {
+					if(data.code == 0) {
+						page_amount = Math.ceil(parseInt(data.data.item_amount) / (1.0 * MAX_DISPLAY));
+						
+					}
+					else {
+					}
+				},
+				error: function() {
+					
+				}
+			});
+		}
+		
+		function setPageNav() {
+			var current_page = page_num;
+			var before_page = current_page - 1;
+			var after_page = current_page + 1;
+			
+			if(document.getElementById("page")) {
+				$("#page").remove();
+			}
+			$("#content").append("<div id='page'><ul id='page_nav'></ul></div>");
+			
+			
+			if(current_page != 1) {
+				$("#page_nav").append("<li><li><a href='" + admin_url + "item/recycle?type=" + type_num + "&page_num=" + before_page + "'>上一页</a></li>");
+			}
+			
+			if(page_amount <= 5) {
+				for(var i = 1; i <= page_amount; i++) {
+					if(current_page == i) {
+						$("#page_nav").append("<li class='current_page'>" + current_page + "</li>");
+					}
+					else {
+						$("#page_nav").append("<li><a href='" + admin_url + "item/recycle?type=" + type_num + "&page_num=" + i + "'>" + i + "</a></li>");
+					}
+				}
+			}
+			else {
+				if(current_page <=3) {
+					for(var i = 1; i <= 5; i++) {
+						if(current_page == i) {
+							$("#page_nav").append("<li class='current_page'>" + current_page + "</li>");
+						}
+						else {
+							$("#page_nav").append("<li><a href='" + admin_url + "item/recycle?type=" + type_num + "&page_num=" + i + "'>" + i + "</a></li>");
+						}
+					}
+				}
+				else if((page_amount - current_page) < 2) {
+					for(var i = page_amount - 4; i <= page_amount; i++) {
+						if(current_page == i) {
+							$("#page_nav").append("<li class='current_page'>" + current_page + "</li>");
+						}
+						else {
+							$("#page_nav").append("<li><a href='" + admin_url + "item/recycle?type=" + type_num + "&page_num=" + i + "'>" + i + "</a></li>");
+						}
+					}
+				}
+				else {
+					for(var i = current_page - 2; i <= current_page + 2; i++) {
+						if(current_page == i) {
+							$("#page_nav").append("<li class='current_page'>" + current_page + "</li>");
+						}
+						else {
+							$("#page_nav").append("<li><a href='" + admin_url + "item/recycle?type=" + type_num + "&page_num=" + i + "'>" + i + "</a></li>");
+						}
+					}
+				}
+			}
+			
+			if(page_amount != 0) {
+				if(current_page != page_amount) {
+					$("#page_nav").append("<li><a href='" + admin_url + "item/recycle?type=" + type_num + "&page_num=" + after_page + "'>下一页</a></li>");
+				}
+				$("#page_nav").append("<li>(共" + page_amount + "页)</li>")
 			}
 		}
 	</script>

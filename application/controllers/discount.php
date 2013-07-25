@@ -12,14 +12,20 @@ class Discount extends Front_Controller
 		{
 			return $this->_json_response(array(), '777', 'param error');
 		}
-		if($this->is_login())
+		$this->load->model('discount_model');
+		$discount = $this->discount_model->get_discount($discount_code);
+		if($discount == null)
+			return $this->_json_response(array(), '777', 'discount NOT EXIST');
+		return  $this->_json_response(array('minus_price' => $discount->minus_price));
+		
+		/* if($this->is_login())
 			return $this->get_with_login($discount_code);
 		else
-			return $this->get_with_unlogin($discount_code);
+			return $this->get_with_unlogin($discount_code); */
 		 
 	}
 	
-	public function get_with_login($discount_code)
+	/* public function get_with_login($discount_code)
 	{
 		$customer_id = $this->session->userdata('customer_id');
 		$this->load->model('discount_model');
@@ -54,5 +60,5 @@ class Discount extends Front_Controller
 		if($discount == null)
 			return $this->_json_response(array(), '777', 'discount NOT EXIST');
 		return $this->_json_response(array('minus_price' => $discount->minus_price));
-	}
+	} */
 }

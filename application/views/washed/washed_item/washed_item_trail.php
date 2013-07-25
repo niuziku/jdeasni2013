@@ -209,7 +209,7 @@
 							'<li class="sample">' + 
 		                        '<label>' + 
 			                        '<input type="radio" name="color" value="default"/>' + 
-			                    	'<button class="btn sample default" style="background-image:url(' + $(".big-photo").attr("src") + ');  background-size:cover;">' +                            
+			                    	'<button class="btn sample default" style="' + $(".big-photo").attr("style") + ';  background-size:cover;">' +                            
 			                            '<span class="as-pic">' + 
 			                           		'如图' +
 			                            '</span>' +
@@ -240,7 +240,7 @@
 							'<li class="sample">' + 
 		                        '<label>' + 
 			                        '<input type="radio" name="plate" value="default"/>' + 
-			                    	'<button class="btn sample default" style="background-image:url(' + $(".big-photo").attr("src") + ');  background-size:cover;">' +                            
+			                    	'<button class="btn sample default" style="' + $(".big-photo").attr("style") + ';  background-size:cover;">' +                            
 			                            '<span class="as-pic">' + 
 			                           		'如图' +
 			                            '</span>' +
@@ -295,7 +295,7 @@
 							'<li class="sample">' + 
 		                        '<label>' + 
 			                        '<input type="radio" name="button" value="如图"/>' + 
-			                    	'<button class="btn sample default" style="background-image:url(' + $(".big-photo").attr("src") + ');  background-size:cover;">' +                            
+			                    	'<button class="btn sample default" style="' + $(".big-photo").attr("style") + ';  background-size:cover;">' +                            
 			                            '<span class="as-pic">' + 
 			                           		'如图' +
 			                            '</span>' +
@@ -326,7 +326,7 @@
 							'<li class="sample">' + 
 		                        '<label>' + 
 			                        '<input type="radio" name="rivet" value="如图"/>' + 
-			                    	'<button class="btn sample default" style="background-image:url(' + $(".big-photo").attr("src") + ');  background-size:cover;">' +                            
+			                    	'<button class="btn sample default" style="' + $(".big-photo").attr("style") + ';  background-size:cover;">' +                            
 			                            '<span>' + 
 			                           		'如图' +
 			                            '</span>' +
@@ -357,7 +357,7 @@
 							'<li class="sample">' + 
 		                        '<label>' + 
 			                        '<input type="radio" name="linecolor" value="default"/>' + 
-			                    	'<button class="btn sample default" style="background-image:url(' + $(".big-photo").attr("src") + ');  background-size:cover;">' +                            
+			                    	'<button class="btn sample default" style="' + $(".big-photo").attr("style") + ';  background-size:cover;">' +                            
 			                            '<span class="as-pic">' + 
 			                           		'如图' +
 			                            '</span>' +

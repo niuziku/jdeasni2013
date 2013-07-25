@@ -137,8 +137,8 @@
 				$("#page_nav").append("<li><li><a href='" + admin_url + "order?page_num=" + before_page + "'>上一页</a></li>");
 			}
 			
-			if(page_amount <= 5) {
-				for(var i = 1; i < page_amount; i++) {
+			if(page_amount <= 5) {	
+				for(var i = 1; i <= page_amount; i++) {
 					if(current_page == i) {
 						$("#page_nav").append("<li class='current_page'>" + current_page + "</li>");
 					}

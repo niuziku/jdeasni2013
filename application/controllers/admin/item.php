@@ -162,29 +162,43 @@ class Item extends Admin_Controller {
 		return $this->_json_response(array());
 	}
 	
-	public function search_item() {
-		$item_type = $this->input->post('item_type');
+	public function search_item($item_type = 1, $page_num = 1) {
 		
-		if($this->_isempty($item_type)) {
-			return $this->_json_response(array(), 777, 'Params cannot be empty');
-		}
-		
-		$item_data = $this->item_model->search_item($item_type);
+		$item_data = $this->item_model->search_item($item_type, $page_num);
 		
 		return $this->_json_response($item_data);
 		
 	}
 	
-	public function search_offsale_item() {
-		$item_type = $this->input->post('item_type');
+	public function search_offsale_item($item_type = 1, $page_num = 1) {
 		
-		if($this->_isempty($item_type)) {
-			return $this->_json_response(array(), 777, 'Params cannot be empty');
-		}
-		
-		$item_data = $this->item_model->search_offsale_item($item_type);
+		$item_data = $this->item_model->search_offsale_item($item_type, $page_num);
 		
 		return $this->_json_response($item_data);
 		
+	}
+	
+	public function modify_price() {
+		$item_id = $this->input->post('item_id');
+		$item_price = $this->input->post('item_price');
+		
+		if($this->_isempty($item_id, $item_price)) {
+			return $this->_json_response(array(), 777, 'Params cannot be empty');
+		}
+		
+		$item_data = $this->item_model->modify_price($item_id, $item_price);
+		
+		return $this->_json_response($item_data);
+		
+	}
+	
+	public function item_amount($item_type = 1) {
+		$item_amount = $this->item_model->item_amount($item_type);
+		return $this->_json_response($item_amount);
+	}
+	
+	public function item_offsale_amount($item_type = 1) {
+		$item_offsale_amount = $this->item_model->item_offsale_amount($item_type);
+		return $this->_json_response($item_offsale_amount);
 	}
 }

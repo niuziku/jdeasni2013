@@ -14,8 +14,9 @@
         <div class="row-fluid">
         
             <div id="left-block" class="span3">
-            	<ul id="account-list" class="thumbnail">
-                	<li><a href="#">订单</a></li>
+            	<ul id="account-list">
+                	<h4>我的账户</h4>
+                	<li><a href="<?php echo site_url('order');?>">订单</a></li>
                     <li><a href="#">修改密码</a></li>
                     <li><a href="#">尺码库</a></li>
                     <li><a href="#">地址库</a></li>
@@ -27,28 +28,29 @@
                    <div class="control-group">
                        <label class="control-label" for="inputOldPassword">旧密码</label>
                        <div class="controls">
-                          <input type="text" id="inputOldPassword" placeholder="旧密码">
+                          <input type="text" name="password_original" id="inputOldPassword" placeholder="旧密码">
                        </div>
                    </div>
                    <div class="control-group">
                        <label class="control-label" for="inputNewPassword">新密码</label>
                        <div class="controls">
-                          <input type="text" id="inputNewPassword" placeholder="新密码">
+                          <input type="text" name="password_new" id="inputNewPassword" placeholder="新密码">
                        </div>
                    </div>
                    <div class="control-group">
                        <label class="control-label" for="confirmNewPassword">确认新密码</label>
                        <div class="controls">
-                          <input type="text" id="confirmNewPassword" placeholder="确认新密码">
+                          <input type="text" name="password_conf" id="confirmNewPassword" placeholder="确认新密码">
                        </div>
                    </div>
-                   <div class="control-group">
-                       <div class="controls">
-                          <button type="submit" class="btn">确认修改</button>
-                       </div>
-                   </div>
+                   
                   
                 </form>
+                <div class="control-group" style="position:relative; left:180px;">
+                     <div class="controls">
+                        <button type="submit" class="btn" id="change-psd-btn">确认修改</button>
+                     </div>
+                </div>
             </div><!-- right block -->
         
         </div><!--content-->

@@ -48,8 +48,15 @@ lightbox = new Lightbox options
   LightboxOptions = (function() {
 
     function LightboxOptions() {
-      this.fileLoadingImage = '<?php echo base_url(\'/images/loading.gif\'); ?>';
-      this.fileCloseImage = '<?php echo base_url(\'/images/close.png\'); ?>';
+    
+      var strFullPath=window.document.location.href;	
+      var strPath=window.document.location.pathname;
+      var pos=strFullPath.indexOf(strPath);
+      var prePath=strFullPath.substring(0,pos);
+      var postPath=strPath.substring(0,strPath.substr(1).indexOf('/')+1);
+      var webrootdum = prePath+postPath;
+      this.fileLoadingImage = webrootdum + '/images/loading.gif';
+      this.fileCloseImage = webrootdum + '/images/close.png';
       this.resizeDuration = 700;
       this.fadeDuration = 500;
       this.labelImage = "";

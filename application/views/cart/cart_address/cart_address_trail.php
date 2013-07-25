@@ -161,9 +161,19 @@ function pay(){
 				var html = data.data.html_text;
 				$('#alipay-jump').append(html); 
 			}
+			else{
+				alert(data.message);
+			}
 		},
 		error: function(){
 		} 
+	});
+}
+
+function changePayTool(){
+	$('input[name="payment"]').change(function(){
+		var payment = $('input:radio[name="payment"]:checked').next().attr('src');
+		$('#pay-method').attr('src', payment);
 	});
 }
 
@@ -176,6 +186,8 @@ $(document).ready(function(){
 	$('.btn-success').click(function(){
 		pay();
 	})
+
+	changePayTool();
 });
 </script>
 </body>
