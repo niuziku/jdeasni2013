@@ -45,7 +45,21 @@
                     
                     <li><a href="<?php echo site_url('comment')?>">个人服务</a></li> 
                     <li><a href="<?php echo site_url('news');?>">资讯</a></li> 
-                    <li><a href="<?php echo site_url('about')?>">关于</a></li>    
+                    <li><a href="<?php echo site_url('about')?>">关于</a></li>
+                    <li><a href="<?php echo site_url('quality')?>">品质保证</a></li>
+                    
+                    <li>
+                    <div class="dropdown" id="custom">
+                        <a href="javascript:void(0)">
+                        <span>定制指南</span><i class="icon-chevron-down icon-white"></i>
+                        </a>
+                        <ul class="dropdown-menu" id="custom-menu">
+                        	<li><a href="<?php echo site_url('faq');?>">FAQ</a></li>
+                            <li><a href="<?php echo site_url('guide');?>">定制流程</a></li>
+                            <li><a href="<?php echo site_url('deliver');?>">配送方式</a></li>
+                        </ul>
+                    </div>  
+                    </li>  
                 </ul>
                 
                 <ul class="inline right">
@@ -93,12 +107,8 @@
             </div>
         </div>
         
-    </div><!-- header -->
-    
-    <div class="container row-fluid">
-    
         <!-- Place somewhere in the <body> of your page -->
-        <div class="flexslider">
+        <div class="flexslider" style="">
           <ul class="slides">
             <li>
                 <a href="<?php echo site_url('item/washed_item_list');?>">
@@ -121,6 +131,10 @@
             <li>
                 <img src="<?php echo base_url('images/slider/05.jpg');?>" />
         </div>
+        
+    </div><!-- header -->
+    
+    <div class="container row-fluid">
         
         <div class="shopping-item">
         	<legend>推荐定制</legend>
@@ -160,11 +174,11 @@
     <div class="footer">
     	<div class="container">
             <ul id="footer-link" class="inline">
-                <li><a href="#">如何定制</a></li> | 
-                <li><a href="#">服务条款</a></li> | 
-                <li><a href="#">退换货物</a></li> | 
-                <li><a href="#">商业合作</a></li> | 
-                <li><a href="#">关于我们</a></li>
+                <li><a href="<?php echo site_url('gudie');?>">如何定制</a></li> | 
+                <li><a href="<?php echo site_url('privacy');?>">隐私条款</a></li> | 
+                <li><a href="<?php echo site_url('deliver');?>">退换货物</a></li> | 
+                <li><a href="<?php echo site_url('follow');?>">关注我们</a></li> | 
+                <li><a href="<?php echo site_url('about');?>">关于我们</a></li>
             </ul>
                     
             <img id="footer-logo" src="<?php echo base_url('images/logo.png');?>" />

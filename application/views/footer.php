@@ -1,11 +1,11 @@
 <div class="footer">
     	<div class="container">
             <ul id="footer-link" class="inline">
-                <li><a href="#">如何定制</a></li> | 
-                <li><a href="#">服务条款</a></li> | 
-                <li><a href="#">退换货物</a></li> | 
-                <li><a href="#">商业合作</a></li> | 
-                <li><a href="#">关于我们</a></li>
+                <li><a href="<?php echo site_url('gudie');?>">如何定制</a></li> | 
+                <li><a href="<?php echo site_url('privacy');?>">隐私条款</a></li> | 
+                <li><a href="<?php echo site_url('returnitem');?>">退换货物</a></li> | 
+                <li><a href="<?php echo site_url('follow');?>">关注我们</a></li> | 
+                <li><a href="<?php echo site_url('about');?>">关于我们</a></li>
             </ul>
                     
             <img id="footer-logo" src="<?php echo base_url('images/logo.png');?>" />
