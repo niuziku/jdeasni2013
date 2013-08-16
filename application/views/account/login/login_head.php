@@ -19,7 +19,7 @@
     
     <style>
 		body {
-			background:url(<?php echo base_url('images/others/bg_login.jpg');?>) no-repeat center top;
+			//background:url(<?php echo base_url('images/others/bg_login.jpg');?>) no-repeat center top;
 		}
 		
 		.header-nav {

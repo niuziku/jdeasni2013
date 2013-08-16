@@ -80,6 +80,6 @@
             </div>
         </form>
         <hr/>
-        <p class="tips">没有账户?<a href="#">立即注册</a></p>
-        <p class="tips">或者购买成功后我们将为你创建一个账户</p>
+        
+        <p class="tips">购买成功后我们将为你创建一个账户</p>
     </div><!-- login -->
