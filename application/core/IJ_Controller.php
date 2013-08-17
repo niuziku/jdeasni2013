@@ -59,7 +59,7 @@ abstract class IJ_Controller extends CI_Controller{
  */
 abstract class Front_Controller extends IJ_Controller{
 	
-	var $monetary_exchange_rate = 0.1629;
+	var $monetary_exchange_rate = 1;
 	var $language = 'CN';
 	
 	public function __construct(){
@@ -94,9 +94,15 @@ abstract class Front_Controller extends IJ_Controller{
 		return $item;
 	}
 	
+	protected function get_monetary(){
+		return $this->config->item('US_rate');
+	}
+	
+	
 	protected function need_rate_exchange()
 	{
-		return $this->session->userdata('monetary') !== 'CN';
+		$monetary = $this->session->userdata('monetary');
+		return !empty($monetary) && $monetary !== 'CN';
 	}
 	
 	protected function load_language()

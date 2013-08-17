@@ -360,7 +360,7 @@ $config['proxy_ips'] = '';
 /*
  * The currency of RMB exchange rate
  */
-$config['US_rate'] = 6; 
+$config['US_rate'] = 0.1629;
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

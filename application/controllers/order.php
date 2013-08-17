@@ -556,7 +556,7 @@ class Order extends Front_Controller
 			$nvpstr="";
 		
 			
-			$amt = ceil($this->monetary_exchange_for_single($amt));
+			$amt = ceil($this->get_monetary() * $amt);
 			
 			/* The returnURL is the location where buyers return when a
 			 payment has been succesfully authorized.
