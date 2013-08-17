@@ -54,7 +54,7 @@
                         <span>定制指南</span><i class="icon-chevron-down icon-white"></i>
                         </a>
                         <ul class="dropdown-menu" id="custom-menu">
-                        	<li><a href="<?php echo site_url('faq');?>">FAQ</a></li>
+                        	<li><a href="<?php echo site_url('faq');?>">常见问题</a></li>
                             <li><a href="<?php echo site_url('guide');?>">定制流程</a></li>
                             <li><a href="<?php echo site_url('deliver');?>">配送方式</a></li>
                         </ul>
