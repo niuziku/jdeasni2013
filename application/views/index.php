@@ -108,8 +108,8 @@
         </div>
         
         <!-- Place somewhere in the <body> of your page -->
-        <div class="flexslider" style="">
-          <ul class="slides">
+        <div class="flexslider" >
+          <ul class="slides" >
             <li>
                 <a href="<?php echo site_url('item/washed_item_list');?>">
                 <img src="<?php echo base_url('images/slider/01.jpg');?>" />
@@ -128,8 +128,6 @@
                 <img src="<?php echo base_url('images/slider/04.jpg');?>" />
                 </a>
             </li>
-            <li>
-                <img src="<?php echo base_url('images/slider/05.jpg');?>" />
         </div>
         
     </div><!-- header -->
