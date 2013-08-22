@@ -240,3 +240,34 @@
 	max-height:160px;
 	min-height:160px;
 }
+
+
+
+
+/* address */
+.address_name {
+	width:60px;
+}
+
+.address_detail {
+	width:330px;
+}
+
+.address_postcode {
+	width:60px;
+}
+
+.address_phone {
+	width:120px
+}
+
+.address_default {
+	width:30px;
+}
+
+
+
+/* size */
+.size_detail {
+	width:600px;
+}
