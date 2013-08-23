@@ -1057,4 +1057,36 @@ class Order extends Front_Controller
 		}
 	}
 	
+	public function leaveMsg(){
+		$order_id = intval($this->input->get('order_id'));
+		$msg = $this->input->get('msg');
+		$this->load->model('order_model');
+		$order = $this->order_model->get_single($order_id);
+		if($order == NULL)
+			return $this->_json_response(array(), 777, 'order not exist');
+		$this->load->model('receiver_model');
+		$receiver = $this->receiver_model->get2($order->receiver_id);
+		if($receiver->customer_id != $this->session->userdata('customer_id'))
+			return $this->_json_response(array(), 777, 'NOT YOUR ORDER');
+		$this->order_model->leaveMsg($order_id, $msg);
+		return $this->_json_response(array());
+	}
+	
+	public function feedback(){
+		$order_id = intval($this->input->get('order_id'));
+		$feedback = $this->input->get('feedback');
+		$this->load->model('order_model');
+		$order = $this->order_model->get_single($order_id);
+		if($order == NULL)
+			return $this->_json_response(array(), 777, 'order not exist');
+		if($order->order_feedback != null)
+			return  $this->_json_response(array(), 777, 'HAVE EVER FEEDBACK');
+		$this->load->model('receiver_model');
+		$receiver = $this->receiver_model->get2($order->receiver_id);
+		if($receiver->customer_id != $this->session->userdata('customer_id'))
+			return $this->_json_response(array(), 777, 'NOT YOUR ORDER');
+		$this->order_model->feedback($order_id, $feedback);
+		return $this->_json_response(array());
+	}
+	
 }

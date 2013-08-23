@@ -20,6 +20,7 @@ class Order_model extends CI_Model
 					`discount`.`minus_price`,
 					`order_status`,
 					`order_comment`,
+					`order_feedback`,
 					`order_express`,
 					`order_express_num`,
 					`cart`.`customer_id`,
@@ -127,7 +128,15 @@ class Order_model extends CI_Model
 		return $this->db->insert_id();
 	}
 	
+	public function leaveMsg($order_id, $msg){
+		$sql = 'UPDATE `order_list` SET `order_comment` = ? WHERE `order_id` = ?';
+		$query = $this->db->query($sql, array($msg, $order_id));
+	}
 	
+	public function feedback($order_id, $feedback){
+		$sql = 'UPDATE `order_list` SET `order_feedback` = ? WHERE `order_id` = ?';
+		$query = $this->db->query($sql, array($feedback, $order_id));
+	}
 	//Modify by Jun
 	public function order_list($page_num) {
 		$result_offset = ( $page_num - 1 ) * $this->max_display;

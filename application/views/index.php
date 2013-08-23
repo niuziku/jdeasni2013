@@ -177,7 +177,6 @@
                 <li><a href="<?php echo site_url('deliver');?>">退换货物</a></li> | 
                 <li><a href="<?php echo site_url('follow');?>">关注我们</a></li> | 
                 <li><a href="<?php echo site_url('about');?>">关于我们</a></li>
-                <li><a href="#payModal" role="button" data-toggle="modal">idjeans</a></li>
             </ul>
                     
             <img id="footer-logo" src="<?php echo base_url('images/logo.png');?>" />
@@ -189,32 +188,7 @@
         </div>
     </div><!-- footer -->
     
-    <div id="payModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">选择付款方式</h3>
-        </div>
-        <div class="modal-body">
-            <form>
-            	<ul class="inline">
-                    <li>
-                        <label>
-                            <input type="radio" checked="checked" name="payment" value="0"/><img src="<?php echo base_url('images/others/alipay.png');?>" alt="支付宝" style="margin-left:20px;"/>
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio" name="payment" value="1"/><img src="<?php echo base_url('images/others/paypal.gif');?>" alt="paypal" style="margin-left:20px;"/>
-                        </label>
-                    </li>
-                </ul>
-            </form>  
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-            <button class="btn btn-success" onClick="">去付款</button>
-        </div>
-    </div>
+    
     
     
     

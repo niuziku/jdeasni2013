@@ -50,4 +50,23 @@ class Measure_model extends CI_Model
 		$query = $this->db->query($sql, array($customer_id));
 		return $query->result();
 	}
+	
+	public function reset_default($customer_id){
+		$sql = 'UPDATE `measure` SET `measure_default` = 0 WHERE `customer_id` = ? AND `measure_valid` = 1';
+		$query = $this->db->query($sql, array($customer_id));
+		
+	}
+	
+	public function set_default($customer_id, $measure_id){
+		$sql = 'UPDATE `measure` SET `measure_default` = 1 WHERE `measure_id` = ? AND `measure_valid` = 1';
+		$query = $this->db->query($sql, array($measure_id));
+	}
+	
+	public function del($measure_id){
+		$sql = 'UPDATE `measure` SET `measure_valid`= 0 WHERE `measure_id` = ?';
+		$query = $this->db->query($sql, array($measure_id));
+		if ($this->db->affected_rows() != 1)
+			return FALSE;
+		return TRUE;
+	}
 }

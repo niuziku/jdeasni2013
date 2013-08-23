@@ -31,6 +31,15 @@ class Receiver_model extends CI_Model
 		return NULL;
 	}
 	
+	public function get2($receiver_id)
+	{
+		$sql = 'SELECT * FROM `receiver` WHERE `receiver_id` = ?';
+		$query = $this->db->query($sql, array($receiver_id));
+		if ($query->num_rows() == 1)
+			return $query->row();
+		return NULL;
+	}
+	
 	public function get_all($customer_id)
 	{
 		$sql = 'SELECT * FROM `receiver` WHERE `customer_id` = ? AND `receiver_valid` = 1';

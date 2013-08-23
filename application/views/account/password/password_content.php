@@ -18,8 +18,8 @@
                 	<h4>我的账户</h4>
                 	<li><a href="<?php echo site_url('order');?>">订单</a></li>
                     <li><a href="#">修改密码</a></li>
-                    <li><a href="#">尺码库</a></li>
-                    <li><a href="#">地址库</a></li>
+                    <li><a href="<?php echo site_url('size');?>">尺码库</a></li>
+                    <li><a href="<?php echo site_url('address');?>">地址库</a></li>
                 </ul>
             </div><!-- left block -->
             

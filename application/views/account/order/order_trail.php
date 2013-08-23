@@ -69,29 +69,21 @@ function get_order(){
             
 			            	'<div class="order-container">' +
 			                
-			                	'<div class="order-operation">' +
+			                	'<div class="order-operation op' + order.order_id + '">' +
 			                        '<ul>' +
 			                            '<li class="title">收件人:</li>' +
 			                            '<li>' + order.receiver_name + ' <a href="javascript:void(0)"><span class="label">地址</span></a></li>' +
 			                        '</ul>' +  (
 					                	parseInt(order.order_status) == 1 ? 
-			                        		'<a href="javascript:void(0)" role="button" class="btn topay">去付款</a>' : 
-			                        		'<a href="javascript:void(0)" role="button" class="btn" data-toggle="modal">留言</a>'
+			                        		'<a href="#payModal" role="button" class="btn" data-toggle="modal">去付款</a>' : (
+			                        		parseInt(order.order_status) == 4 ? (
+			                        			order.order_feedback == null ?
+					                        	'<a href="#FeedbackModal" role="button" class="btn tofb" data-toggle="modal" onclick="feedback(' + order.order_id + ');">评价</a>' : 
+					                        	'<a href="javascript:void(0)" role="button" class="btn" data-toggle="modal">已评价</a>'
+											): 
+			                        		'<a href="#MessageModal" role="button" class="btn toMsg" data-toggle="modal" onclick="leaveMsg(' + order.order_id + ',\'' + order.order_comment  + '\')">留言</a>'
+			                        		)
 			                        ) + 
-		                            
-		                            '<div id="MessageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' + 
-		                                '<div class="modal-header">' + 
-		                                    '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
-		                                    '<h3 id="myModalLabel">订单留言</h3>' +
-		                                '</div>' +
-		                                '<div class="modal-body">' +
-		                                    '<p>这是之前的留言啦</p>' +
-		                                '</div>' +
-		                                '<div class="modal-footer">' +
-		                                    '<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>' +
-		                                    '<button class="btn btn-primary disabled">留言</button>' +
-		                                '</div>' + 
-		                            '</div>' +
 			                        
 			                    '</div><!-- div order operation -->' + 
 				                '<div class="total-price">' + 
@@ -142,11 +134,42 @@ function get_order(){
 			        $('#right-block').append($html);
 				} 
 
+				$html = 
+					'<div id="MessageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+						'<input type="hidden" value="" id="msg-order-id"/>' + 
+			            '<div class="modal-header">' + 
+			                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
+			                '<h3 id="myModalLabel">订单留言</h3>' +
+			            '</div>' +
+			            '<div class="modal-body">' +
+		                	'<textarea id="msg-content"></textarea>' +
+			            '</div>' +
+			            '<div class="modal-footer">' +
+			                '<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>' +
+			                '<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="submitMsg();">留言</button>' +
+			            '</div>' + 
+			        '</div>' +
+			        '<div id="FeedbackModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">' +
+			        	'<input type="hidden" value="" id="fb-order-id"/>' + 
+			            '<div class="modal-header">' +
+			                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
+			                '<h3 id="myModalLabel">评价</h3><span>你的每份意见都是我们前进的动力</span>' +
+			            '</div>' +
+			            '<div class="modal-body">' +
+			                '<textarea id="fb-content"></textarea>' +
+			            '</div>' +
+			            '<div class="modal-footer">' +
+			                '<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>' +
+			                '<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="submitFB();">评价</button>' +
+			            '</div>' +
+			        '</div>';
+				$('#right-block').append($html);
+
 				$(".topay").click(function(){
 					$.ajax({
 						url : site_url + 'order/pay_unpaid_order',
 						data: {
-								pay_tool: 0,
+								pay_tool: $('input[name="payment"]:checked').val(),
 								order_id : $(this).parent().parent().parent().find('.order_id').val()
 							},
 						type: 'get',
@@ -170,6 +193,58 @@ function get_order(){
 	});
 }
 
+
+function feedback(order_id){
+	$('#fb-order-id').attr("value", order_id);
+}
+
+
+function leaveMsg(order_id, ori_msg){
+	$('#msg-order-id').attr("value", order_id);
+	$('#msg-content').val( ori_msg == 'null' || ori_msg == null ? '' : ori_msg);
+	
+	
+}
+
+function submitMsg(){
+	var msg = $('#msg-content').val();
+	var order_id = $('#msg-order-id').attr("value");
+	$.ajax({
+		url : site_url + 'order/leaveMsg',
+		data : {order_id : order_id, msg : msg},
+		type: 'get',
+		dataType : 'json',
+		success : function(data){
+			if(data.code == 0){
+				$(".op" + order_id + ' .toMsg').remove();
+				$(".op" + order_id).append('<a href="#MessageModal" role="button" class="btn toMsg" data-toggle="modal" onclick="leaveMsg(' + order_id + ',\'' + msg  + '\')">留言</a>');
+			}
+		},
+		error : function(){
+			
+		}
+	});
+}
+
+function submitFB(){
+	var fb = $('#fb-content').val();
+	var order_id = $('#fb-order-id').attr("value");
+	$.ajax({
+		url : site_url + 'order/feedback',
+		data : {order_id : order_id, feedback : fb},
+		type: 'get',
+		dataType : 'json',
+		success : function(data){
+			if(data.code == 0){
+				$(".op" + order_id + ' .tofb').remove();
+				$(".op" + order_id).append('<a href="javascript:void(0)" role="button" class="btn" data-toggle="modal">已评价</a>');
+			}
+		},
+		error : function(){
+			
+		}
+	});
+}
 </script>
 
 </body>
