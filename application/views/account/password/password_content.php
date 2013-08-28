@@ -9,10 +9,8 @@
                <li><p class="text">修改密码</p></li>
             </ul>
         </div>
-		<h3>修改您的密码</h3>
         
         <div class="row-fluid">
-        
             <div id="left-block" class="span3">
             	<ul id="account-list">
                 	<h4>我的账户</h4>
@@ -24,6 +22,7 @@
             </div><!-- left block -->
             
             <div id="right-block" class="span9">
+	            <legend>修改您的密码</legend>
             	<form class="form-horizontal">
                    <div class="control-group">
                        <label class="control-label" for="inputOldPassword">旧密码</label>

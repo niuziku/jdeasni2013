@@ -108,8 +108,6 @@ function get_order(){
 									detail_num++;
 								}
 							});
-							if(detail_num == 0)
-								option_detail += '<li><img style="width:40px; height:40px;"  class="order-option-img img-rounded" src="' + images_url + 'item/' + item.item_photos[0] + '"/></li>';
 							option_detail += '</ul>';
 
 							
