@@ -142,7 +142,7 @@ function get_order(){
 			                '<h3 id="myModalLabel">订单留言</h3>' +
 			            '</div>' +
 			            '<div class="modal-body">' +
-		                	'<textarea id="msg-content"></textarea>' +
+		                	'<textarea id="msg-content" style="min-width: 97%; max-width:97%;"></textarea>' +
 			            '</div>' +
 			            '<div class="modal-footer">' +
 			                '<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>' +
