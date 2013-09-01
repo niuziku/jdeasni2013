@@ -12,6 +12,7 @@
                         </a>
                         <ul class="dropdown-menu" id="custom-menu">
                         	<li><a href="<?php echo site_url('item/washed_item_list');?>">洗水牛仔</a></li>
+                            <li><a href="<?php echo site_url('item/advanced_washed_item_list');?>">高端洗水</a></li>
                             <li><a href="<?php echo site_url('item/selvedge_item_list');?>">赤耳单宁</a></li>
                             <li><a href="<?php echo site_url('item/casual_item_list');?>">休闲裤</a></li>
                         </ul>

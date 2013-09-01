@@ -30,7 +30,7 @@
 	$.ajax({
 		url : site_url + 'item/get_items_by_type',
 		data : {
-			item_type : 3,
+			item_type : 4,
 			start : (page_num-1) * MAX_DISPLAY,
 			num : MAX_DISPLAY
 		},
@@ -43,7 +43,7 @@
 					for(var i = 0; i < items.length && i < 4; i++){
 						$('.thumbnails').eq(0).append('\
 							<li class="span3">' + 
-								'<a href="' + site_url + 'item/casual_item/' + items[i].item_id + '" class="thumbnail"><img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +
+								'<a href="' + site_url + 'item/advanced_washed_item/' + items[i].item_id + '" class="thumbnail"><img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +
 									'<div class="detail">' + 
 										'<p class="name">' + items[i].item_name + '</p>' + 
 										'<p class="price-large right"><span>RMB</span>' + items[i].item_price + '</p>' +
@@ -57,7 +57,7 @@
 					for(var i = 4; i < items.length && i < 8; i++){
 						$('.thumbnails').eq(1).append('\
 							<li class="span3">' + 
-								'<a href="' + site_url + 'item/casual_item/' + items[i].item_id + '" class="thumbnail"><img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +
+								'<a href="' + site_url + 'item/advanced_washed_item/' + items[i].item_id + '" class="thumbnail"><img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +
 									'<div class="detail">' + 
 										'<p class="name">' + items[i].item_name + '</p>' + 
 										'<p class="price-large right"><span>RMB</span>' + items[i].item_price + '</p>' +
@@ -71,7 +71,7 @@
 					for(var i = 8; i < items.length && i < 12; i++){
 						$('.thumbnails').eq(2).append('\
 							<li class="span3">' + 
-								'<a href="' + site_url + 'item/casual_item/' + items[i].item_id + '" class="thumbnail"><img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +
+								'<a href="' + site_url + 'item/advanced_washed_item/' + items[i].item_id + '" class="thumbnail"><img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +
 									'<div class="detail">' + 
 										'<p class="name">' + items[i].item_name + '</p>' + 
 										'<p class="price-large right"><span>RMB</span>' + items[i].item_price + '</p>' +
@@ -97,7 +97,7 @@
 	function get_page_amount() {
 		$.ajax({
 				url: site_url + "item/get_items_num_by_type",
-				data: {item_type : 3},
+				data: {item_type : 4},
 				type: "get",
 				dataType: "json",
 				complete:setPageNav,
@@ -120,7 +120,7 @@
 		var before_page = current_page - 1;
 		var after_page = current_page + 1;
 		if(current_page != 1) {
-			$('.page-change ul').append('<li><a href="' + site_url + 'item/casual_item_list?page=' + (current_page - 1) + '">&laquo;</a></li>')
+			$('.page-change ul').append('<li><a href="' + site_url + 'item/advanced_washed_item_list?page=' + (current_page - 1) + '">&laquo;</a></li>')
 		}
 		
 		if(page_amount <= 5) {
@@ -129,7 +129,7 @@
 					$('.page-change ul').append('<li class="active"><a href="#">' + current_page + '</a></li>');
 				}
 				else {
-					$('.page-change ul').append('<li><a href="' + site_url + 'item/casual_item_list?page=' + i + '">' + i + '</a></li>');
+					$('.page-change ul').append('<li><a href="' + site_url + 'item/advanced_washed_item_list?page=' + i + '">' + i + '</a></li>');
 				}
 			}
 		}
@@ -140,7 +140,7 @@
 						$('.page-change ul').append('<li class="active"><a href="#">' + current_page + '</a></li>');
 					}
 					else {
-						$('.page-change ul').append('<li><a href="' + site_url + 'item/casual_item_list?page=' + i + '">' + i + '</a></li>');
+						$('.page-change ul').append('<li><a href="' + site_url + 'item/advanced_washed_item_list?page=' + i + '">' + i + '</a></li>');
 					}
 				}
 			}
@@ -150,7 +150,7 @@
 						$('.page-change ul').append('<li class="active"><a href="#">' + current_page + '</a></li>');
 					}
 					else {
-						$('.page-change ul').append('<li><a href="' + site_url + 'item/casual_item_list?page=' + i + '">' + i + '</a></li>');
+						$('.page-change ul').append('<li><a href="' + site_url + 'item/advanced_washed_item_list?page=' + i + '">' + i + '</a></li>');
 					}
 				}
 			}
@@ -160,7 +160,7 @@
 						$('.page-change ul').append('<li class="active"><a href="#">' + current_page + '</a></li>');
 					}
 					else {
-						$('.page-change ul').append('<li><a href="' + site_url + 'item/casual_item_list?page=' + i + '">' + i + '</a></li>');
+						$('.page-change ul').append('<li><a href="' + site_url + 'item/advanced_washed_item_list?page=' + i + '">' + i + '</a></li>');
 					}
 				}
 			}
@@ -168,7 +168,7 @@
 		
 		if(current_page != page_amount) {
 			var next_page = current_page + 1;
-			$('.page-change ul').append('<li><a href="' + site_url + 'item/casual_item_list?page=' + next_page + '">&raquo;</a></li>');
+			$('.page-change ul').append('<li><a href="' + site_url + 'item/advanced_washed_item_list?page=' + next_page + '">&raquo;</a></li>');
 		}
 	}
 

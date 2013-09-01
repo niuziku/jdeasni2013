@@ -16,7 +16,7 @@ class Item_model extends CI_Model
 	public function get_by_type($type, $start = NULL, $num = NULL)
 	{
 		$sql = 'SELECT * FROM `item` 
-					WHERE `item_type` = ? AND `item_on_sale` = 1 
+					WHERE `item_type` = ? AND `item_on_sale` = 1
 				ORDER BY `item_id` DESC';
 		if (isset($start) && isset($num))
 			$sql .= ' LIMIT ?, ?';
@@ -31,14 +31,30 @@ class Item_model extends CI_Model
 		return $query->row()->num;
 	}
 	
-	public function get_popular_items($start = NULL, $length = NULL)
+	public function get_popular_items($start = NULL, $length = NULL, $item_type)
 	{
 		$sql = 'SELECT 
 					* 
-				FROM 
-					`item` as item_all, (
+				FROM (
+					SELECT 
+						`item_id`,
+						`item_id` as `item_join_id`,
+						`item_name`,
+						`item_price`,
+						`item_provenance`,
+						`item_weight`,
+						`item_material_image`,
+						`item_intro`,
+						`item_photo`,
+						`item_small_photo`,
+						`item_type`,
+						`item_on_sale`
+					FROM 
+						`item`
+					) as item_all
+					LEFT JOIN (
 						SELECT 
-							`item_id`, count(1) as `order_num`
+							`item_id` as `item_join_id`, count(1) as `order_num`
 						FROM
 							`cart` JOIN `cart_single_item` ON `cart`.`cart_id` = `cart_single_item`.`cart_id`
 						WHERE 
@@ -46,14 +62,16 @@ class Item_model extends CI_Model
 						GROUP BY 
 							`item_id`
 					) as item_num
+				ON 
+					`item_all`.`item_join_id` = `item_num`.`item_join_id`
 				WHERE 
-					`item_all`.`item_id` = `item_num`.`item_id`  AND `item_all`.`item_on_sale` = 1
+					`item_all`.`item_on_sale` = 1 AND `item_all`.`item_type` = ?
 				ORDER BY `order_num` DESC';
 		if (isset($start) && isset($length))
 		{
 			$sql .= ' LIMIT ?, ?';
 		}
-		$query = $this->db->query($sql, array($start, $length));
+		$query = $this->db->query($sql, array($item_type, $start, $length));
 		return $query->result();
 	}
 	

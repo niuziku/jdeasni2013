@@ -143,11 +143,11 @@
                 <li>
                 <!--<img id="pay-method" src="../images/paypal.gif" alt="paypal" />-->
                 <img id="pay-method" src="<?php echo base_url('images/others/alipay.png');?>" alt="支付宝" />
-                <button type="button" class="btn btn-large btn-success">去付款</button>
+                <a href="<?php echo site_url('pay');?>" target="_blank" class="btn btn-large btn-success" onclick="return pay();">去付款</a>
                 </li>
             </ul>
         </div><!-- submit -->
         
         <a href="<?php echo site_url('cart');?>" style="position:absolute; bottom:0; left:10px;">返回购物车</a>
-        <div id="alipay-jump"></div>
+        
     </div><!-- container -->

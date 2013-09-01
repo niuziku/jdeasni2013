@@ -141,8 +141,10 @@ function pay(){
 	message = $('input[name="message"]').val();
 	discount_code = $('input[name="discount"]').val();
 
+	var success = true;
 	$.ajax({
 		url : site_url + 'order/doOrder',
+		async:false,
 		data: {
 				email : email,
 				receiver_name : receiver_name,
@@ -159,15 +161,21 @@ function pay(){
 		success: function(data){
 			if(data.code == 0){
 				var html = data.data.html_text;
-				$('#alipay-jump').append(html); 
+				var myhref = site_url + "pay?html={" + encodeURI(html) + "}";
+				$('.btn-success').attr("href", myhref);
+				window.location.href= site_url + "pay/success";
+				success = true;
 			}
 			else{
 				alert(data.message);
+				success = false;
 			}
 		},
 		error: function(){
+			success = false;
 		} 
 	});
+	return success;
 }
 
 function changePayTool(){
@@ -179,12 +187,17 @@ function changePayTool(){
 
 $(document).ready(function(){
 	get_cart();
+	
+	$("#jump-pay").on("click",function(){
+        window.open('www.yourdomain.com','_blank');
+    });
+    
 	$('#discount-btn').click(function(){
 		discount();
 	});
 
 	$('.btn-success').click(function(){
-		pay();
+		//pay();
 	})
 
 	changePayTool();

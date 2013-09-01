@@ -36,6 +36,16 @@ class Item extends Front_Controller
 		$this->load->view('casual/casual_item_list/casual_item_list_trail.php');
 	}
 	
+	public function advanced_washed_item_list()
+	{
+		$this->load->helper('url');
+		$this->load->view('advanced_washed/advanced_washed_item_list/advanced_washed_item_list_head.php');
+		$this->load->view('header.php');
+		$this->load->view('advanced_washed/advanced_washed_item_list/advanced_washed_item_list_content.php');
+		$this->load->view('footer.php');
+		$this->load->view('advanced_washed/advanced_washed_item_list/advanced_washed_item_list_trail.php');
+	}
+	
 	public function washed_item(){
 		$this->load->helper('url');
 		$this->load->view('washed/washed_item/washed_item_head.php');
@@ -55,7 +65,22 @@ class Item extends Front_Controller
 	}
 	
 	public function casual_item(){
-		
+		$this->load->helper('url');
+		$this->load->view('casual/casual_item/casual_item_head.php');
+		$this->load->view('header.php');
+		$this->load->view('casual/casual_item/casual_item_content.php');
+		$this->load->view('footer.php');
+		$this->load->view('casual/casual_item/casual_item_trail.php');
+	}
+	
+	public function advanced_washed_item()
+	{
+		$this->load->helper('url');
+		$this->load->view('advanced_washed/advanced_washed_item/advanced_washed_item_head.php');
+		$this->load->view('header.php');
+		$this->load->view('advanced_washed/advanced_washed_item/advanced_washed_item_content.php');
+		$this->load->view('footer.php');
+		$this->load->view('advanced_washed/advanced_washed_item/advanced_washed_item_trail.php');
 	}
 
 	//如果start = -1,返回全部
@@ -100,6 +125,7 @@ class Item extends Front_Controller
 	{
 		$start = intval($this->input->get('start'));
 		$length = intval($this->input->get('length'));
+		$item_type = intval($this->input->get('item_type'));
 		if($start < 0)
 		{
 			$start = NULL;
@@ -113,8 +139,7 @@ class Item extends Front_Controller
 		
 		
 		$this->load->model('item_model');
-		$items = $this->item_model->get_popular_items($start, $length);
-		
+		$items = $this->item_model->get_popular_items($start, $length, $item_type);
 		$this->_splite_photos($items);
 		
 		//货币转换

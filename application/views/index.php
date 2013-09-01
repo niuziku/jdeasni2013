@@ -37,6 +37,7 @@
                         </a>
                         <ul class="dropdown-menu" id="custom-menu">
                         	<li><a href="<?php echo site_url('item/washed_item_list');?>">洗水牛仔</a></li>
+                            <li><a href="<?php echo site_url('item/advanced_washed_item_list');?>">高端洗水</a></li>
                             <li><a href="<?php echo site_url('item/selvedge_item_list');?>">赤耳单宁</a></li>
                             <li><a href="<?php echo site_url('item/casual_item_list');?>">休闲裤</a></li>
                         </ul>
@@ -135,11 +136,33 @@
     <div class="container row-fluid">
         
         <div class="shopping-item">
-        	<legend>推荐定制</legend>
+        	<legend>普通洗水推荐</legend>
             <a href="index.php/item/washed_item_list" class="more">更多</a>
 
             <ul class="thumbnails">
-            </ul>  
+            </ul> 
+        </div>
+        
+        <div class="shopping-item">
+        	<legend>高端洗水推荐</legend>
+            <a href="index.php/item/advanced_washed_item_list" class="more">更多</a>
+
+            <ul class="thumbnails">
+            </ul> 
+        </div>
+        
+        <div class="shopping-item">
+        	<legend>赤耳单宁推荐</legend>
+            <a href="index.php/item/selvedge_item_list" class="more">更多</a>
+
+            <ul class="thumbnails">
+            </ul> 
+        </div>
+        
+        <div class="shopping-item">
+        	<legend>休闲裤推荐</legend>
+            <a href="index.php/item/casual_item_list" class="more">更多</a>
+
             <ul class="thumbnails">
             </ul> 
         </div>
@@ -207,11 +230,13 @@
 	});
 
 	function get_items(){
+		//普通洗水
 		$.ajax({
 			url : site_url + 'item/get_popular_items',
 			data : {
 				start: 0,
-				length: 8
+				length: 4,
+				item_type:1
 			},
 			type : 'get',
 			dataType : 'json',
@@ -219,14 +244,8 @@
 				if(data.code == 0){
 					var items = data.data.items;
 					if(items.length > 0){
-						for(var i = 0; i < items.length && i < 4; i++){
-							var item_page = '';
-							if(items[i].item_type == 1)
-								item_page = 'item/washed_item/';
-							if(items[i].item_type == 2)
-								item_page = 'item/selvedge_item/';
-							if(items[i].item_type == 3)
-								item_page = 'item/casual_item/'; 
+						var item_page = 'item/washed_item/';
+						for(var i = 0; i < items.length && i < 4; i++){ 
 							$('.thumbnails').eq(0).append('\
 								<li class="span3">' + 
 									'<a href="' + site_url + item_page + items[i].item_id + '" class="thumbnail">' + 
@@ -240,16 +259,99 @@
 							);
 						}
 					}
-					if(items.length > 4){
-						for(var i = 4; i < items.length && i < 8; i++){
-							var item_page = '';
-							if(items[i].item_type == 1)
-								item_page = 'item/washed_item/';
-							if(items[i].item_type == 2)
-								item_page = 'item/selvedge_item/';
-							if(items[i].item_type == 3)
-								item_page = 'item/casual_item/'; 
+				}
+			},
+			error : function(){
+			}
+		});
+
+		//高端洗水
+		$.ajax({
+			url : site_url + 'item/get_popular_items',
+			data : {
+				start: 0,
+				length: 4,
+				item_type:4
+			},
+			type : 'get',
+			dataType : 'json',
+			success : function(data){
+				if(data.code == 0){
+					var items = data.data.items;
+					if(items.length > 0){
+						var item_page = 'item/advanced_washed_item/';
+						for(var i = 0; i < items.length && i < 4; i++){
 							$('.thumbnails').eq(1).append('\
+								<li class="span3">' + 
+									'<a href="' + site_url + item_page + items[i].item_id + '" class="thumbnail">' + 
+										'<img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +
+										'<div class="detail">' + 
+											'<p class="name">' + items[i].item_name + '</p>' + 
+											'<p class="price-large right"><span>RMB</span>' + items[i].item_price + '</p>' +
+										'</div>' +
+									'</a>' + 
+								'</li>'
+							);
+						}
+					}
+				}
+			},
+			error : function(){
+			}
+		});
+
+		//赤耳单宁
+		$.ajax({
+			url : site_url + 'item/get_popular_items',
+			data : {
+				start: 0,
+				length: 4,
+				item_type:2
+			},
+			type : 'get',
+			dataType : 'json',
+			success : function(data){
+				if(data.code == 0){
+					var items = data.data.items;
+					if(items.length > 0){
+						var item_page = 'item/selvedge_item/';
+						for(var i = 0; i < items.length && i < 4; i++){
+							$('.thumbnails').eq(2).append('\
+								<li class="span3">' + 
+									'<a href="' + site_url + item_page + items[i].item_id + '" class="thumbnail">' + 
+										'<img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +
+										'<div class="detail">' + 
+											'<p class="name">' + items[i].item_name + '</p>' + 
+											'<p class="price-large right"><span>RMB</span>' + items[i].item_price + '</p>' +
+										'</div>' +
+									'</a>' + 
+								'</li>'
+							);
+						}
+					}
+				}
+			},
+			error : function(){
+			}
+		});
+
+		//休闲裤
+		$.ajax({
+			url : site_url + 'item/get_popular_items',
+			data : {
+				start: 0,
+				length: 4,
+				item_type:3
+			},
+			type : 'get',
+			dataType : 'json',
+			success : function(data){
+				if(data.code == 0){
+					var items = data.data.items;
+					if(items.length > 0){
+						var item_page = 'item/casual_item/';
+						for(var i = 0; i < items.length && i < 4; i++){
+							$('.thumbnails').eq(3).append('\
 								<li class="span3">' + 
 									'<a href="' + site_url + item_page + items[i].item_id + '" class="thumbnail">' + 
 										'<img src="' + images_url + 'item/' + items[i].item_photos[0] + '" />' +

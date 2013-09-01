@@ -18,7 +18,7 @@
 				if(data.code == 0){
 					var item = data.data.item;
 					//防止不合法的item进入，影响细节选择
-					if(item.item_type != 3)
+					if(item.item_type != 4)
 						window.location.href = "/index.php";
 					//$('.big-photo').attr('src', images_url + 'item/' + item.item_photos[0]);
 					$(".big-photo").attr('style', 'background-image:url(' + images_url + 'item/' + item.item_photos[0] + '); ');
@@ -169,7 +169,7 @@
 		function get_detail(){
 			$.ajax({
 				url: site_url + 'item_detail/get_by_item_type',
-				data : {item_type : 3},
+				data : {item_type : 4},
 				type : 'get',
 				dataType : 'json',
 				success : function(data){

@@ -7,7 +7,7 @@
                <li>&gt;</li>
                <li><p class="text">定制</p></li>
                <li>&gt;</li>
-               <li><p class="text">休闲裤</p></li>
+               <li><p class="text">高端洗水</p></li>
             </ul>
         </div>
         
