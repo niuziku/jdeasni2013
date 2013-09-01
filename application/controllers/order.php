@@ -634,8 +634,7 @@ class Order extends Front_Controller
 				// Redirect to paypal.com here
 				$token = urldecode($resArray["TOKEN"]);
 				$payPalURL = PAYPAL_URL.$token;
-				$sHtml = "<form name='paypalSubmit' action='".$payPalURL."' method='post'></form>";
-				$sHtml = $sHtml."<script>document.forms['paypalSubmit'].submit();</script>";
+				$sHtml = "<form name='paysubmit' action='".$payPalURL."' method='post'></form>";
 				return $sHtml;
 			
 			} else  {

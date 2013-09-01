@@ -5,6 +5,7 @@ var bindex = local_url.indexOf("{");
 var eindex = local_url.indexOf("}");
 var html = local_url.substring(bindex+1, eindex);
 html = decodeURI(html);
+html += "<script>document.forms['paysubmit'].submit();<\/script>";
 $("#alipay-jump").append(html);
 </script>
 
