@@ -3,6 +3,37 @@
 <script type="text/javascript">
 /*后台交互*/
 
+function setCookie(name,value)
+{
+    var Days = 30;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString()+";path=/";
+
+}
+
+//读取cookies
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+    if(arr=document.cookie.match(reg))
+ 
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
+//删除cookies
+function delCookie(name)
+{
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval=getCookie(name);
+    if(cval!=null)
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
+
 function get_item_message(item_msg){
 	var item_id = item_msg['detail'].item_id;
 	$.ajax({
@@ -161,8 +192,11 @@ function pay(){
 		success: function(data){
 			if(data.code == 0){
 				var html = data.data.html_text;
-				var myhref = site_url + "pay?html={" + encodeURI(html) + "}";
-				$('.btn-success').attr("href", myhref);
+				/*var myhref = site_url + "pay?html={" + encodeURI(html) + "}";
+				$('.btn-success').attr("href", myhref);*/
+
+				setCookie("html",html);
+			
 				window.location.href= site_url + "pay/success";
 				success = true;
 			}

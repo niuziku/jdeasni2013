@@ -2,10 +2,11 @@
 class Pay extends Front_Controller{
 	
 	public function index(){
+		$html = $this->input->get('html');
 		$this->load->helper('url');
 		$this->load->view('cart/pay/pay_head');
 		$this->load->view('cart/pay/pay_content');
-		$this->load->view('cart/pay/pay_trail');
+		$this->load->view('cart/pay/pay_trail', array('html'=>$html));
 	}
 	
 	public function success(){
