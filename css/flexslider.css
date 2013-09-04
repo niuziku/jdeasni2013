@@ -39,7 +39,7 @@ html[xmlns] .slides {display: block;}
 
 /* FlexSlider Default Theme
 *********************************/
-.flexslider {margin: 0 0 30px; background: #fff; position: relative; zoom: 1;  width:1920px; margin-left:-960px; left:50%; }
+.flexslider {margin: 0 0 30px; background: #fff url(../images/loading.gif) no-repeat center center; position: relative; zoom: 1;  width:1920px; margin-left:-960px; left:50%; min-height:400px;}
 .flex-viewport {max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;}
 .loading .flex-viewport {max-height: 300px;}
 .flexslider .slides {zoom: 1;}
