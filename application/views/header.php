@@ -33,6 +33,7 @@
                         	<li><a href="<?php echo site_url('faq');?>">常见问题</a></li>
                             <li><a href="<?php echo site_url('guide');?>">定制流程</a></li>
                             <li><a href="<?php echo site_url('deliver');?>">配送方式</a></li>
+                            <li><a href="<?php echo site_url('shortrun');?>">Short Run Production</a></li>
                         </ul>
                     </div>  
                     </li>     
